@@ -237,7 +237,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- CALENDÁRIO DO GHL (código de incorporação).
            Para trocar de calendário: GHL > Calendários > (calendário) > Compartilhar > Código de incorporação,
-           e substitua o <iframe> e o <script> abaixo. -->
+           e troque o ID do calendário nos dois endereços abaixo (iframe e script). -->
       <iframe data-src="https://api.jaguarsystems.online/widget/booking/cRGpYWX8Y9MTLmX4TEfi" allow="payment" style="width: 100%;border:none;overflow: hidden;" scrolling="no" id="cRGpYWX8Y9MTLmX4TEfi_1794447356742" title="Escolha o horário do seu Raio X"></iframe>
       <script>
         // Carrega o calendário já com nome, sobrenome, e-mail e telefone preenchidos
@@ -338,6 +338,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var agenda = document.getElementById('agenda');
   var placeholder = document.getElementById('agenda-placeholder');
   if (agenda.querySelector('iframe') && placeholder) { placeholder.style.display = 'none'; }
+
+  // Funil na planilha: marca "Viu obrigado" na linha desta visita (aba "Funil").
+  // Só envia se a pessoa veio da landing page nesta mesma aba (tem o código da visita).
+  // TROCAR: se mudar a URL do script da planilha, troque aqui e no index.html.
+  var PLANILHA_URL = "https://script.google.com/macros/s/AKfycbyHo72P4bGXWeSHsgLEWLMgTitqju01s9wXHUyyWwLIERoN5bqHnUQ8ZbZ9HojWa2c8/exec";
+  try {
+    var funilId = sessionStorage.getItem('funil_id');
+    if (funilId && PLANILHA_URL) {
+      fetch(PLANILHA_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ tipo: 'funil', funil_id: funilId, etapa: 'viu_obrigado' }),
+        keepalive: true
+      }).catch(function () {});
+    }
+  } catch (e) {}
 
   // Ano atual no rodapé
   document.getElementById('ano').textContent = new Date().getFullYear();

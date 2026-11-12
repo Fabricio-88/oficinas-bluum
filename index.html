@@ -1112,6 +1112,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   })();
 
   /* ============================================================
+     FUNIL NA PLANILHA (aba "Funil")
+     Uma linha por visita, marcando até onde a pessoa chegou.
+     Só vão etapas, respostas das 3 perguntas e UTMs: nada de nome, telefone ou endereço.
+     ============================================================ */
+  // Código da visita: vale para esta aba do navegador (landing page + página de obrigado)
+  var FUNIL_ID = '';
+  try { FUNIL_ID = sessionStorage.getItem('funil_id') || ''; } catch (e) {}
+  if (!FUNIL_ID) {
+    FUNIL_ID = 'v' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+    try { sessionStorage.setItem('funil_id', FUNIL_ID); } catch (e) {}
+  }
+
+  function registrarFunil(etapa, extras) {
+    if (!PLANILHA_URL) return;
+    var corpo = { tipo: 'funil', funil_id: FUNIL_ID, etapa: etapa };
+    for (var k in utms) { corpo[k] = utms[k]; }
+    for (var j in (extras || {})) { corpo[j] = extras[j]; }
+    try {
+      fetch(PLANILHA_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(corpo),
+        keepalive: true
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  registrarFunil('entrou');
+
+  /* ============================================================
      ENVIO DO LEAD
      Função isolada: recebe o objeto com todos os dados e envia para
      a planilha do Google (via Apps Script) e, se configurado, para o GHL.
@@ -1185,6 +1216,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!jaAbriu) {
       jaAbriu = true;
       registrarEvento('popup_aberto'); // evento 2 do funil
+      registrarFunil('abriu_popup');
     }
   }
   function fecharModal() {
@@ -1308,6 +1340,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         faturamento_atual: respostas.faturamento_atual,
         meta_faturamento: respostas.meta_faturamento
       });
+      registrarFunil('respondeu', {
+        funcao: respostas.funcao,
+        faturamento_atual: respostas.faturamento_atual,
+        meta_faturamento: respostas.meta_faturamento
+      });
     }
     if (atual < TOTAL_ETAPAS - 1) { mostrarEtapa(atual + 1, 'frente', true); }
     else { finalizar(); }
@@ -1375,6 +1412,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // Objeto completo do lead
     var dados = {
       event_id: eventId,
+      funil_id: FUNIL_ID, // a planilha marca "Enviou" na linha desta visita (aba Funil)
       fbp: lerCookie('_fbp'),
       fbc: lerCookie('_fbc'),
       user_agent: navigator.userAgent,
