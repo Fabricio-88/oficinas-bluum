@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Raio X da Oficina | Aceleradora de Vendas para Oficinas</title>
+<meta name="description" content="Sua oficina com mais clientes ou seu dinheiro de volta. Em 30 minutos, online, o Raio X da Oficina mostra o que está travando a entrada de clientes e o que fazer primeiro.">
+<meta name="theme-color" content="#0B0B0C">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Sua oficina com mais clientes ou seu dinheiro de volta">
+<meta property="og:description" content="Raio X da Oficina: 30 minutos, online, para descobrir o que está travando a entrada de clientes na sua oficina e o que fazer primeiro.">
+
+<!-- Marca que o JavaScript está ativo (as animações de entrada só valem com JS) -->
+<script>document.documentElement.className += ' js';</script>
+
+<!-- ============================================================
+     GOOGLE TAG MANAGER (GTM-PFH4H86Z)
+     O Pixel da Meta é instalado DENTRO do GTM, não aqui no código.
+     ============================================================ -->
+<script>
+window.dataLayer = window.dataLayer || [];
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PFH4H86Z');
+</script>
+<!-- Fim do Google Tag Manager -->
+
+<!-- ============================================================
+     EVENTOS DO FUNIL (dataLayer → GTM)
+     1. lp_visualizacao        abriu a landing page
+     2. popup_aberto           abriu o pop-up (1x por visita)
+     3. popup_preenchido       respondeu as 3 perguntas de qualificação (1x por visita)
+     4. formulario_enviado     enviou o formulário completo = LEAD
+     5. obrigado_visualizacao  viu a página de obrigado (está no obrigado.html)
+     Cada evento leva um event_id único. Nunca vai nome, telefone ou endereço.
+     ============================================================ -->
+<script>
+window.registrarEvento = function (nome, extras, idFixo) {
+  var dados = { event: nome, event_id: idFixo || (nome + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10)) };
+  for (var k in (extras || {})) { dados[k] = extras[k]; }
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(dados);
+  return dados.event_id;
+};
+registrarEvento('lp_visualizacao');
+</script>
+
+<!-- Google Fonts: Inter (textos) e Sora (títulos) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   VARIÁVEIS E BASE
+   ============================================================ */
+:root{
+  --preto:#0B0B0C;
+  --preto-2:#161618;
+  --claro:#EEEEEC;
+  --branco:#FFFFFF;
+  --texto-escuro:#1A1A1A;
+  --texto-escuro-2:#5A5A5A;
+  --texto-claro:#F5F5F3;
+  --texto-claro-2:#A8A8A8;
+  --vermelho:#D7262E;
+  --vermelho-escuro:#A8121A;
+  --vermelho-vivo:#FF5A4D;   /* vermelho claro, usado em detalhes sobre fundo escuro */
+  --vermelho-texto:#C0202A;  /* textos pequenos em fundo claro */
+  /* Destaque principal: tons de vermelho (botões, ícones, detalhes) */
+  --gradiente:linear-gradient(90deg,#A8121A 0%,#D7262E 55%,#F03F3A 100%);
+  /* Versão mais clara, para palavras em destaque sobre fundo escuro */
+  --gradiente-texto:linear-gradient(90deg,#E5323A 0%,#FF5A4D 100%);
+  --borda-escura:rgba(255,255,255,.09);
+  --borda-clara:rgba(0,0,0,.07);
+  --raio:14px;
+  --sombra:0 1px 2px rgba(0,0,0,.04),0 12px 32px -12px rgba(0,0,0,.12);
+  --fonte:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --fonte-titulo:'Sora','Inter',system-ui,sans-serif;
+  --altura-topo:60px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html.modal-aberto{overflow:hidden}
+body{
+  margin:0;font-family:var(--fonte);font-size:16px;line-height:1.6;
+  color:var(--texto-escuro);background:var(--preto);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3,h4,p,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+button{font-family:inherit}
+svg{display:block;flex-shrink:0}
+h1,h2,h3{font-family:var(--fonte-titulo);font-weight:800;line-height:1.18;letter-spacing:-.02em;text-wrap:balance}
+:focus-visible{outline:3px solid var(--vermelho-vivo);outline-offset:3px;border-radius:6px}
+
+.container{width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
+.estreito{max-width:820px}
+
+/* Ícones de traço na cor do gradiente (o gradiente #grad está definido no SVG logo após o <body>) */
+.ico{width:24px;height:24px;fill:none;stroke:url(#grad);stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.ico-cinza{stroke:#77777A}
+.grad-texto{background:var(--gradiente-texto);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sec-clara .grad-texto,.modal .grad-texto{background-image:var(--gradiente)}
+
+/* ============================================================
+   SEÇÕES (alternância clara / escura)
+   ============================================================ */
+.sec{padding:68px 0;position:relative}
+.sec-clara{background:var(--claro);color:var(--texto-escuro)}
+.sec-escura{background:var(--preto);color:var(--texto-claro)}
+.sec-cabecalho{max-width:740px;margin-bottom:36px}
+.sec h2{font-size:clamp(27px,7vw,40px)}
+.sobretitulo{display:block;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.sec-clara .sobretitulo{color:var(--vermelho-texto)}
+.sec-escura .sobretitulo{color:var(--vermelho-vivo)}
+.sec-sub{margin-top:14px;font-size:17px}
+.sec-clara .sec-sub{color:var(--texto-escuro-2)}
+.sec-escura .sec-sub{color:var(--texto-claro-2)}
+
+/* ============================================================
+   BOTÕES (CTA)
+   ============================================================ */
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;min-height:56px;padding:14px 28px;border:0;border-radius:var(--raio);
+  background:var(--gradiente);color:#fff;font-size:17px;font-weight:700;line-height:1.2;
+  text-decoration:none;text-align:center;cursor:pointer;
+  box-shadow:0 12px 30px -12px rgba(215,38,46,.7);
+  transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 36px -12px rgba(215,38,46,.85);filter:brightness(1.08)}
+.btn:active{transform:translateY(0)}
+.cta{display:flex;flex-direction:column;align-items:stretch;gap:10px}
+.cta-micro{font-size:13px;text-align:center}
+.sec-escura .cta-micro,.hero .cta-micro{color:var(--texto-claro-2)}
+.sec-clara .cta-micro{color:var(--texto-escuro-2)}
+.cta-centro{margin-top:40px}
+
+/* ============================================================
+   FAIXA DO TOPO + TOPO FIXO
+   ============================================================ */
+.faixa{background:var(--gradiente);color:#fff;text-align:center;font-size:12.5px;font-weight:600;line-height:1.35;padding:8px 16px}
+.faixa strong{font-weight:700}
+.topo{
+  position:sticky;top:0;z-index:50;height:var(--altura-topo);
+  background:rgba(11,11,12,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--borda-escura);
+}
+.topo .container{height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;flex-direction:column;line-height:1.15;text-decoration:none;color:var(--texto-claro);font-family:var(--fonte-titulo);min-width:0}
+.logo-l1{font-size:10px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
+.logo-l2{font-size:10px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
+@media (min-width:400px){.logo-l1,.logo-l2{font-size:12px}}
+.logo img{height:36px;width:auto}
+.btn-topo{
+  display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
+  min-height:40px;padding:8px 14px;border:0;border-radius:10px;background:var(--gradiente);
+  color:#fff;font-size:13px;font-weight:700;white-space:nowrap;cursor:pointer;
+  transition:filter .18s ease,transform .18s ease;
+}
+.btn-topo:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+/* ============================================================
+   1. HERO (centralizada, com animações ao fundo)
+   ============================================================ */
+.hero{position:relative;background:var(--preto);color:var(--texto-claro);padding:52px 0 64px;overflow:hidden;isolation:isolate;text-align:center}
+.hero-fundo{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+/* Brilhos vermelhos que se movem devagar */
+.brilho{position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(closest-side,rgba(215,38,46,.38),transparent);animation:flutua 14s ease-in-out infinite alternate;will-change:transform}
+.brilho.b1{left:-260px;top:-300px}
+.brilho.b2{right:-280px;top:-220px;background:radial-gradient(closest-side,rgba(168,18,26,.5),transparent);animation-duration:18s;animation-direction:alternate-reverse}
+.brilho.b3{left:50%;bottom:-460px;margin-left:-320px;background:radial-gradient(closest-side,rgba(240,63,58,.2),transparent);animation-duration:22s}
+@keyframes flutua{from{transform:translate(0,0) scale(1)}to{transform:translate(90px,70px) scale(1.18)}}
+/* Grade de linhas descendo lentamente */
+.grade{position:absolute;left:0;right:0;top:-56px;bottom:0;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:56px 56px;animation:gradeDesce 9s linear infinite;will-change:transform}
+@keyframes gradeDesce{to{transform:translateY(56px)}}
+/* Riscos de luz cruzando o fundo (como faróis passando) */
+.farol{position:absolute;left:0;width:240px;height:2px;border-radius:2px;opacity:0;
+  background:linear-gradient(90deg,transparent,rgba(255,90,77,.95));animation:passa 7s linear infinite;will-change:transform}
+.farol.f1{top:14%;animation-duration:6s}
+.farol.f2{top:31%;animation-duration:9s;animation-delay:-3s;width:160px}
+.farol.f3{top:52%;animation-duration:7.5s;animation-delay:-5s}
+.farol.f4{top:68%;animation-duration:11s;animation-delay:-2s;width:320px}
+.farol.f5{top:84%;animation-duration:8s;animation-delay:-6.5s;width:180px}
+.farol.volta{background:linear-gradient(270deg,transparent,rgba(255,255,255,.55));animation-name:passaVolta}
+.farol.f6{top:42%;animation-duration:10s;animation-delay:-4s;width:200px}
+.farol.f7{top:76%;animation-duration:12.5s;animation-delay:-9s;width:140px}
+@keyframes passa{0%{transform:translateX(-340px);opacity:0}8%{opacity:.85}92%{opacity:.85}100%{transform:translateX(100vw);opacity:0}}
+@keyframes passaVolta{0%{transform:translateX(100vw);opacity:0}8%{opacity:.5}92%{opacity:.5}100%{transform:translateX(-340px);opacity:0}}
+/* Escurece as bordas para o texto ficar sempre legível */
+.hero-fundo::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 50% 45%,rgba(11,11,12,.72),rgba(11,11,12,.25) 70%),linear-gradient(180deg,transparent 70%,var(--preto))}
+
+.hero-conteudo{max-width:860px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
+.etiqueta{
+  display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;
+  border:1px solid rgba(240,63,58,.45);background:rgba(215,38,46,.12);
+  font-size:13px;font-weight:600;color:var(--texto-claro);
+}
+.etiqueta::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--vermelho-vivo);animation:pulsa 1.8s ease-in-out infinite}
+@keyframes pulsa{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero h1{font-size:clamp(33px,9.4vw,64px);margin:22px 0 0;line-height:1.1}
+.hero h1 span{display:block}
+.hero-sub{margin-top:20px;font-size:17px;color:var(--texto-claro-2);max-width:640px}
+.hero-sub strong{color:var(--texto-claro);font-weight:600}
+.hero-nota{margin-top:10px;font-size:13px;color:var(--texto-claro-2)}
+.hero .cta{margin-top:28px;width:100%}
+.chips-rotulo{margin-top:36px;font-size:13px;color:var(--texto-claro-2)}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:10px}
+.chips li{padding:6px 12px;border-radius:999px;border:1px solid var(--borda-escura);background:rgba(255,255,255,.04);font-size:13px;color:var(--texto-claro-2)}
+
+/* ============================================================
+   2. SINAIS
+   ============================================================ */
+.grade-sinais{display:grid;gap:14px}
+.cartao-claro{background:var(--branco);border:1px solid var(--borda-clara);border-radius:var(--raio);padding:22px;box-shadow:var(--sombra)}
+.sinal{display:flex;gap:16px;align-items:flex-start}
+.ico-caixa{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;flex-shrink:0;background:rgba(215,38,46,.07);border:1px solid rgba(215,38,46,.16)}
+.sinal h3{font-size:17px;font-family:var(--fonte);font-weight:700;letter-spacing:-.01em;line-height:1.3}
+.sinal p{margin-top:6px;font-size:15px;color:var(--texto-escuro-2)}
+.fecho{margin-top:32px;padding:20px 22px;border-left:3px solid var(--vermelho);border-radius:0 var(--raio) var(--raio) 0;background:rgba(215,38,46,.06);font-size:17px;font-weight:600}
+
+/* ============================================================
+   3. OS 3 ESTÁGIOS (trilha visual e animada)
+   ============================================================ */
+.trilha{display:grid;gap:26px}
+.trilha>li{position:relative;padding-left:58px}
+.trilha-no{
+  position:absolute;left:0;top:0;width:44px;height:44px;border-radius:50%;z-index:1;
+  display:grid;place-items:center;background:var(--gradiente);
+  font-family:var(--fonte-titulo);font-weight:800;font-size:14px;color:#fff;
+  box-shadow:0 0 0 0 rgba(215,38,46,.55);animation:onda 2.4s ease-out infinite;
+}
+.trilha>li:nth-child(2) .trilha-no{animation-delay:.8s}
+.trilha>li:nth-child(3) .trilha-no{animation-delay:1.6s}
+@keyframes onda{0%{box-shadow:0 0 0 0 rgba(215,38,46,.55)}70%,100%{box-shadow:0 0 0 14px rgba(215,38,46,0)}}
+/* Linha que conecta os nós (vertical no mobile), com um ponto de luz percorrendo */
+.trilha>li:not(:last-child)::before{content:"";position:absolute;left:21px;top:44px;bottom:-26px;width:2px;background:linear-gradient(180deg,rgba(215,38,46,.8),rgba(215,38,46,.2))}
+.cartao-escuro{background:var(--preto-2);border:1px solid var(--borda-escura);border-radius:var(--raio);padding:24px}
+.estagio{position:relative;overflow:hidden;padding:0;transition:border-color .25s ease,transform .25s ease}
+.estagio:hover{border-color:rgba(240,63,58,.45);transform:translateY(-3px)}
+.estagio-corpo{padding:22px}
+.estagio-rotulo{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--vermelho-vivo)}
+.estagio h3{font-size:24px;margin-top:10px}
+.estagio-rotulo{display:block}
+.estagio-faixa{display:inline-block;margin-top:8px;padding:5px 12px;border-radius:99px;background:var(--gradiente);color:#fff;font-size:13px;font-weight:700;line-height:1.3}
+.estagio-provoca{margin-top:14px;font-family:var(--fonte-titulo);font-weight:700;font-size:18px;line-height:1.35;color:var(--texto-claro)}
+.estagio-texto{margin-top:10px;font-size:15.5px;color:var(--texto-claro-2)}
+.estagio h4{margin-top:20px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-claro-2)}
+.erros{margin-top:10px;display:grid;gap:9px}
+.erros li{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--texto-claro)}
+.erros svg{width:18px;height:18px;margin-top:3px;fill:none;stroke:var(--vermelho-vivo);stroke-width:2.4;stroke-linecap:round}
+.estagio-caminho{margin-top:20px;padding-top:16px;border-top:1px solid var(--borda-escura);font-size:14.5px;color:var(--texto-claro-2)}
+.estagio-caminho strong{color:var(--texto-claro)}
+
+/* Ilustrações animadas de cada estágio */
+.visual{position:relative;min-height:132px;padding:18px 22px;background:linear-gradient(160deg,rgba(215,38,46,.2),rgba(215,38,46,.03) 65%);border-bottom:1px solid var(--borda-escura);display:flex;flex-direction:column;justify-content:center;gap:12px}
+.visual-legenda{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--texto-claro-2)}
+/* 1) Boxes vazios */
+.vagas{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.vagas i{height:54px;border-radius:8px;border:1.5px dashed rgba(255,255,255,.28);animation:vazio 2.4s ease-in-out infinite}
+.vagas i:nth-child(1){border:0;background:var(--gradiente);animation:none;display:grid;place-items:center}
+.vagas i:nth-child(1) svg{width:26px;height:26px;fill:none;stroke:#fff;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.vagas i:nth-child(3){animation-delay:.4s}.vagas i:nth-child(4){animation-delay:.8s}.vagas i:nth-child(5){animation-delay:1.2s}
+@keyframes vazio{0%,100%{opacity:.35}50%{opacity:1}}
+/* 2) Funil vazando */
+.funil{display:grid;gap:7px}
+.funil div{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--texto-claro-2)}
+.funil b{flex:0 0 104px;font-weight:600;white-space:nowrap}
+.funil span{flex:1;height:14px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.funil i{display:block;height:100%;border-radius:99px;background:var(--gradiente);transform-origin:left;position:relative;overflow:hidden}
+.funil i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:translateX(-100%);animation:brilhoBarra 2.6s ease-in-out infinite}
+@keyframes brilhoBarra{60%,100%{transform:translateX(100%)}}
+.js .funil i{transform:scaleX(0);transition:transform 1s cubic-bezier(.2,.7,.2,1) .35s}
+.js .visivel .funil i{transform:scaleX(1)}
+.js .funil div:nth-child(2) i{transition-delay:.55s}
+.js .funil div:nth-child(3) i{transition-delay:.75s}
+/* 3) Clientes que somem */
+.clientes{display:flex;gap:10px;align-items:center}
+.clientes i{width:34px;height:34px;border-radius:50%;background:var(--gradiente);display:grid;place-items:center;animation:some 5s ease-in-out infinite}
+.clientes i svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round}
+.clientes i:nth-child(2){animation-delay:.6s}.clientes i:nth-child(3){animation-delay:1.2s}.clientes i:nth-child(4){animation-delay:1.8s}.clientes i:nth-child(5){animation-delay:2.4s}
+.clientes i:nth-child(1){animation:none}
+@keyframes some{0%,25%{opacity:1;transform:none;filter:none}55%,85%{opacity:.18;transform:translateX(8px) scale(.82);filter:grayscale(1)}100%{opacity:1;transform:none;filter:none}}
+
+/* ============================================================
+   4. O QUE VOCÊ LEVA
+   ============================================================ */
+.leva-grade{display:grid;gap:36px}
+.lista-check{display:grid;gap:12px}
+.lista-check li{display:flex;gap:14px;align-items:flex-start;font-size:17px;font-weight:500}
+.lista-check li span{padding-top:2px}
+.check-bola{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;background:var(--gradiente)}
+.check-bola svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.como h3{font-size:20px;margin-bottom:18px}
+.passos{display:grid;gap:12px}
+.passo{display:flex;gap:16px;align-items:center;padding:18px 20px}
+.passo-num{font-family:var(--fonte-titulo);font-weight:800;font-size:28px;line-height:1;flex-shrink:0;width:36px;background:var(--gradiente);-webkit-background-clip:text;background-clip:text;color:transparent}
+.passo strong{display:block;font-size:16px;line-height:1.3}
+.passo span{display:block;margin-top:3px;font-size:14px;color:var(--texto-escuro-2)}
+
+/* ============================================================
+   5. COMPARATIVO (2 colunas)
+   ============================================================ */
+.comparativo{display:grid;gap:14px;position:relative}
+.comp{border-radius:18px;padding:26px 22px}
+.comp-nos{background:linear-gradient(170deg,rgba(215,38,46,.2),var(--preto-2) 45%);border:1.5px solid rgba(240,63,58,.6);box-shadow:0 30px 70px -40px rgba(215,38,46,.8)}
+.comp-eles{background:var(--preto-2);border:1px solid var(--borda-escura)}
+.comp-selo{display:inline-block;padding:4px 10px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.comp-nos .comp-selo{background:var(--gradiente);color:#fff}
+.comp-eles .comp-selo{background:rgba(255,255,255,.08);color:var(--texto-claro-2)}
+.comp h3{font-size:21px;margin-top:12px}
+.comp-eles h3{color:var(--texto-claro-2)}
+.comp ul{margin-top:20px;display:grid}
+.comp li{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-top:1px solid var(--borda-escura);font-size:15.5px;line-height:1.4}
+.comp-nos li{color:var(--texto-claro);font-weight:500}
+.comp-eles li{color:var(--texto-claro-2)}
+.marca{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
+.marca svg{width:13px;height:13px;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.marca.sim{background:var(--gradiente)}
+.marca.sim svg{stroke:#fff}
+.marca.nao{background:rgba(255,255,255,.07)}
+.marca.nao svg{stroke:#8A8A8D}
+.marca.neutro{background:rgba(255,255,255,.14)}
+.marca.neutro svg{stroke:#fff}
+.comp-vs{display:none}
+.comp-nota{margin-top:16px;font-size:13px;color:var(--texto-claro-2)}
+.frase-final{margin-top:28px;font-size:18px;font-weight:600;color:var(--texto-claro);max-width:720px}
+
+/* ============================================================
+   6. GARANTIA
+   ============================================================ */
+.garantia{position:relative;background:var(--branco);border-radius:20px;padding:32px 24px;box-shadow:var(--sombra);border:1px solid var(--borda-clara);overflow:hidden;text-align:center}
+.garantia::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--gradiente)}
+.selo{width:84px;height:84px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;background:var(--gradiente);box-shadow:0 14px 30px -12px rgba(215,38,46,.65)}
+.selo svg{width:40px;height:40px;fill:none;stroke:#fff;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.garantia h2{font-size:clamp(25px,6.4vw,36px)}
+.garantia p{margin-top:14px;font-size:17px;color:var(--texto-escuro-2)}
+.garantia p strong{color:var(--texto-escuro)}
+.garantia .nota{font-size:14px;margin-top:18px;padding-top:18px;border-top:1px solid var(--borda-clara)}
+
+/* ============================================================
+   7. PARA QUEM É / NÃO É
+   ============================================================ */
+.grade-2{display:grid;gap:14px}
+.quem h3{font-size:20px;margin-bottom:18px}
+.quem ul{display:grid;gap:14px}
+.quem li{display:flex;gap:12px;align-items:flex-start;font-size:16px;color:var(--texto-claro)}
+.quem li svg{margin-top:1px}
+.quem-sim{border-color:rgba(240,63,58,.4)}
+.quem-nao li{color:var(--texto-claro-2)}
+
+/* ============================================================
+   8. SOBRE
+   ============================================================ */
+.sobre-grade{display:grid;gap:24px;align-items:center}
+.sobre-numero{position:relative;overflow:hidden;background:var(--preto);color:var(--texto-claro);border-radius:20px;padding:34px 26px;isolation:isolate}
+.sobre-numero::before{content:"";position:absolute;z-index:-1;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(closest-side,rgba(215,38,46,.55),transparent)}
+.sobre-numero b{display:block;font-family:var(--fonte-titulo);font-weight:800;font-size:92px;line-height:.95;letter-spacing:-.04em;background:var(--gradiente-texto);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sobre-numero span{display:block;margin-top:12px;font-family:var(--fonte-titulo);font-weight:700;font-size:20px;line-height:1.3}
+.sobre-foto{width:96px;height:96px;border-radius:50%;object-fit:cover;margin-bottom:18px}
+.sobre-texto p{margin-top:14px;font-size:17px;color:var(--texto-escuro-2)}
+.sobre-texto p strong{color:var(--texto-escuro)}
+
+/* ============================================================
+   9. FAQ (acordeão)
+   ============================================================ */
+.faq{display:grid;gap:10px}
+.faq-item{background:var(--preto-2);border:1px solid var(--borda-escura);border-radius:var(--raio);transition:border-color .2s ease}
+.faq-item.aberto{border-color:rgba(240,63,58,.5)}
+.faq-item h3{font-family:var(--fonte);letter-spacing:0}
+.faq-btn{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:18px 20px;background:none;border:0;color:var(--texto-claro);font-size:16px;font-weight:600;line-height:1.35;text-align:left;cursor:pointer}
+.faq-mais{position:relative;width:18px;height:18px;flex-shrink:0}
+.faq-mais::before,.faq-mais::after{content:"";position:absolute;left:0;right:0;top:8px;height:2px;border-radius:2px;background:var(--vermelho-vivo);transition:transform .25s ease}
+.faq-mais::after{transform:rotate(90deg)}
+.faq-item.aberto .faq-mais::after{transform:rotate(0)}
+.faq-painel{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .28s ease,visibility 0s .28s}
+.faq-item.aberto .faq-painel{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .28s ease,visibility 0s 0s}
+.faq-painel>div{overflow:hidden}
+.faq-painel p{padding:0 20px 20px;font-size:15.5px;color:var(--texto-claro-2)}
+
+/* ============================================================
+   10. CTA FINAL + 11. RODAPÉ
+   ============================================================ */
+.cta-final{position:relative;overflow:hidden;isolation:isolate;text-align:center;border-top:1px solid var(--borda-escura)}
+.cta-final::before{content:"";position:absolute;z-index:-1;left:50%;bottom:-45%;width:min(900px,140%);aspect-ratio:1.6;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(215,38,46,.4),rgba(168,18,26,.18) 55%,transparent)}
+.cta-final h2{max-width:760px;margin:0 auto}
+.cta-final p{margin:16px auto 0;max-width:560px;color:var(--texto-claro-2);font-size:17px}
+.cta-final .cta{margin-top:30px}
+.rodape{background:var(--preto);color:var(--texto-claro-2);border-top:1px solid var(--borda-escura);padding:30px 0;font-size:14px}
+.rodape .container{display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center}
+.rodape strong{color:var(--texto-claro);font-family:var(--fonte-titulo);font-weight:700}
+.rodape a{text-underline-offset:3px}
+.rodape-dados{display:flex;flex-direction:column;gap:4px}
+
+/* ============================================================
+   BARRA FIXA (apenas mobile)
+   ============================================================ */
+.barra-fixa{
+  position:fixed;left:0;right:0;bottom:0;z-index:45;
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(11,11,12,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-top:1px solid var(--borda-escura);
+  transform:translateY(110%);visibility:hidden;transition:transform .3s ease,visibility 0s .3s;
+}
+.barra-fixa.visivel{transform:none;visibility:visible;transition:transform .3s ease,visibility 0s 0s}
+.barra-fixa .btn{min-height:52px;font-size:16px}
+
+/* ============================================================
+   POP-UP COM AS PERGUNTAS (formulário em etapas)
+   ============================================================ */
+dialog.modal{border:0;padding:0;background:transparent;color:var(--texto-escuro);width:min(600px,calc(100% - 20px));max-width:none;max-height:none;overflow:visible}
+dialog.modal::backdrop{background:rgba(6,6,7,.8);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+dialog.modal[open]{animation:modalEntra .28s ease}
+@keyframes modalEntra{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+.modal-caixa{position:relative;background:var(--branco);border-radius:18px;padding:26px 20px 20px;max-height:calc(100vh - 20px);max-height:calc(100dvh - 20px);overflow-y:auto;box-shadow:0 40px 90px -20px rgba(0,0,0,.7)}
+.modal-fechar{position:absolute;right:10px;top:10px;width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:#8A8A8D;font-size:26px;line-height:1;cursor:pointer;transition:background .15s ease,color .15s ease}
+.modal-fechar:hover{background:#F0F0EE;color:var(--texto-escuro)}
+.modal h2{font-size:clamp(22px,6vw,28px);line-height:1.2;padding-right:34px}
+.modal-sub{margin-top:8px;font-size:15px;font-weight:600;color:var(--texto-escuro-2)}
+.progresso{margin-top:20px;height:6px;border-radius:99px;background:#E9E9E6;overflow:hidden}
+.progresso-barra{height:100%;width:20%;border-radius:99px;background:var(--gradiente);transition:width .35s ease}
+/* Passos numerados ligados por uma linha */
+.stepper{display:flex;align-items:center;margin-top:12px}
+.stepper li{display:flex;align-items:center;flex:1}
+.stepper li:last-child{flex:0 0 auto}
+.stepper li::after{content:"";flex:1;height:2px;margin:0 5px;background:#E3E3E0;transition:background .3s ease}
+.stepper li:last-child::after{display:none}
+.stepper b{width:28px;height:28px;border-radius:50%;border:2px solid #D9D9D5;background:#fff;display:grid;place-items:center;font-size:12px;font-weight:700;color:#9A9A96;transition:all .25s ease}
+.stepper .feito b{background:var(--vermelho);border-color:var(--vermelho);color:#fff}
+.stepper .feito::after{background:var(--vermelho)}
+.stepper .atual b{border-color:var(--vermelho);color:var(--vermelho-texto);box-shadow:0 0 0 4px rgba(215,38,46,.14)}
+.progresso-texto{margin-top:10px;font-size:13px;font-weight:600;color:#8A8A8D}
+.etapa{border:0;margin:18px 0 0;padding:0;min-width:0}
+.etapa[hidden]{display:none}
+.etapa legend{padding:0;font-family:var(--fonte-titulo);font-weight:700;font-size:20px;line-height:1.25;letter-spacing:-.01em;color:var(--texto-escuro)}
+.etapa-ajuda{margin-top:6px;font-size:14px;color:var(--texto-escuro-2)}
+/* Palavra em destaque na pergunta (META / ATUAL): fundo vermelho, texto branco */
+.destaque{background:var(--vermelho);color:#fff;padding:2px 9px;border-radius:7px;white-space:nowrap}
+.opcional{font-weight:400;color:#8A8A8D}
+.etapa.entra{animation:entra .32s ease both}
+.etapa.entra-volta{animation:entraVolta .32s ease both}
+@keyframes entra{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+@keyframes entraVolta{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+.opcoes{display:grid;gap:10px;margin-top:16px}
+.opcao{
+  display:flex;align-items:center;gap:14px;width:100%;min-height:54px;
+  padding:12px 16px;border-radius:12px;border:1.5px solid #DFDFDB;background:#fff;
+  font-size:16px;font-weight:500;color:var(--texto-escuro);text-align:left;cursor:pointer;
+  transition:border-color .15s ease,background .15s ease,box-shadow .15s ease;
+}
+.opcao::before{content:"";width:20px;height:20px;border-radius:50%;border:2px solid #C9C9C5;flex-shrink:0;transition:all .15s ease}
+.opcao:hover{border-color:var(--vermelho);background:rgba(215,38,46,.04)}
+.opcao[aria-pressed="true"]{border-color:var(--vermelho);background:rgba(215,38,46,.07);box-shadow:0 0 0 3px rgba(215,38,46,.12)}
+.opcao[aria-pressed="true"]::before{border-color:var(--vermelho);background:radial-gradient(circle,var(--vermelho) 0 45%,transparent 50%)}
+.campo{margin-top:16px}
+.campo label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.campo input{
+  width:100%;min-height:54px;padding:12px 16px;border-radius:12px;border:1.5px solid #DFDFDB;background:#fff;
+  font-family:inherit;font-size:16px;color:var(--texto-escuro); /* 16px evita o zoom automático no iOS */
+  transition:border-color .15s ease,box-shadow .15s ease;
+}
+.campo input::placeholder{color:#9A9A96}
+.campo input:focus{outline:0;border-color:var(--vermelho);box-shadow:0 0 0 4px rgba(215,38,46,.15)}
+.campo input[aria-invalid="true"]{border-color:var(--vermelho)}
+.armadilha{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden} /* campo invisível contra robôs */
+.erro{min-height:22px;margin-top:10px;font-size:14px;font-weight:600;color:var(--vermelho-texto)}
+.form-nav{display:flex;gap:10px;margin-top:4px}
+.btn-voltar{flex:0 0 auto;min-height:56px;padding:0 18px;border-radius:var(--raio);border:1.5px solid #DFDFDB;background:transparent;font-size:16px;font-weight:600;color:var(--texto-escuro-2);cursor:pointer;transition:border-color .15s ease,color .15s ease}
+.btn-voltar:hover{border-color:#9A9A96;color:var(--texto-escuro)}
+.btn-voltar[hidden]{display:none}
+.form-nav .btn{flex:1;width:auto}
+.btn[disabled]{opacity:.8;cursor:progress;transform:none}
+.girando{width:18px;height:18px;border-radius:50%;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;animation:gira .7s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.form-seguro{margin-top:14px;font-size:13px;color:#8A8A8D;text-align:center}
+.form-seguro a{color:var(--texto-escuro-2);font-weight:600}
+
+/* ============================================================
+   ANIMAÇÕES DE ENTRADA (fade + leve subida)
+   ============================================================ */
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.js .reveal.visivel{opacity:1;transform:none}
+.js .reveal:nth-child(2){transition-delay:.08s}
+.js .reveal:nth-child(3){transition-delay:.16s}
+.js .reveal:nth-child(4){transition-delay:.08s}
+.js .reveal:nth-child(5){transition-delay:.16s}
+.js .reveal:nth-child(6){transition-delay:.24s}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .js .reveal{opacity:1;transform:none}
+  .farol{display:none}
+}
+
+/* ============================================================
+   TABLET E DESKTOP
+   ============================================================ */
+@media (min-width:640px){
+  .grade-sinais{grid-template-columns:1fr 1fr}
+  .modal-caixa{padding:36px 36px 28px}
+  .etapa legend{font-size:22px}
+  .garantia{padding:48px 56px}
+  .faixa{font-size:14px}
+  .comparativo{grid-template-columns:1fr 1fr;gap:18px}
+  .comp{padding:32px 30px}
+  /* Selo "VS" entre as duas colunas */
+  .comp-vs{display:grid;place-items:center;position:absolute;left:50%;top:44px;width:48px;height:48px;margin-left:-24px;border-radius:50%;z-index:2;
+    background:var(--preto);border:1.5px solid rgba(240,63,58,.6);font-family:var(--fonte-titulo);font-weight:800;font-size:14px;color:var(--texto-claro)}
+}
+@media (min-width:768px){
+  :root{--altura-topo:68px}
+  .container{padding:0 32px}
+  .sec{padding:100px 0}
+  .sec-cabecalho{margin-bottom:52px}
+  .btn{width:auto;padding:14px 36px}
+  .cta{align-items:flex-start}
+  .hero .cta,.cta-centro,.cta-final .cta{align-items:center}
+  .logo-l1,.logo-l2{font-size:14px}
+  .btn-topo{font-size:14px;padding:8px 20px;min-height:42px}
+  .barra-fixa{display:none}
+  .rodape .container{flex-direction:row;justify-content:space-between;align-items:flex-start;text-align:left}
+  .rodape-dados{text-align:right}
+  .grade-2{grid-template-columns:1fr 1fr}
+  .quem{padding:32px}
+  .passos{grid-template-columns:repeat(3,1fr)}
+  .passo{flex-direction:column;align-items:flex-start;gap:10px;padding:24px}
+  .sobre-grade{grid-template-columns:.8fr 1.2fr;gap:56px}
+  .sobre-numero{padding:48px 40px}
+  .sobre-numero b{font-size:128px}
+}
+@media (min-width:960px){
+  .hero{padding:96px 0 104px}
+  .hero-sub{font-size:19px}
+  .grade-sinais{grid-template-columns:repeat(3,1fr);gap:18px}
+  .leva-grade{grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+  .passos{grid-template-columns:1fr}
+  .passo{flex-direction:row;align-items:center;gap:16px;padding:18px 20px}
+
+  /* Trilha horizontal no desktop */
+  .trilha{grid-template-columns:repeat(3,1fr);gap:22px}
+  .trilha>li{padding-left:0;padding-top:68px;display:flex}
+  .trilha>li:not(:last-child)::before{left:44px;right:-22px;top:21px;bottom:auto;width:auto;height:2px;background:linear-gradient(90deg,rgba(215,38,46,.85),rgba(215,38,46,.3))}
+  .estagio{width:100%}
+  .estagio-corpo{padding:26px}
+}
+</style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PFH4H86Z"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- Fim do Google Tag Manager (noscript) -->
+
+<!-- Definições de SVG: gradiente dos ícones + ícones reutilizáveis -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="grad" gradientUnits="userSpaceOnUse" x1="2" y1="2" x2="22" y2="22">
+      <stop offset="0" stop-color="#C41C25"/><stop offset="1" stop-color="#FF5A4D"/>
+    </linearGradient>
+  </defs>
+  <symbol id="i-calendario" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-pessoas" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.3c2.1.7 3.5 2.6 3.5 5.7"/></symbol>
+  <symbol id="i-orcamento" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9.5 12.5l5 5M14.5 12.5l-5 5"/></symbol>
+  <symbol id="i-relogio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-queda" viewBox="0 0 24 24"><path d="M3 7l6 6 4-4 8 8M21 11v6h-6"/></symbol>
+  <symbol id="i-retorno" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.6-3.2 8.2-8 9.5C7.2 20.2 4 16.6 4 12V6zM8.5 12l2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-carro" viewBox="0 0 24 24"><path d="M5 13l1.6-4.6A2 2 0 0 1 8.5 7h7a2 2 0 0 1 1.9 1.4L19 13M4 13h16a1 1 0 0 1 1 1v3H3v-3a1 1 0 0 1 1-1zM6 17v2M18 17v2"/></symbol>
+  <symbol id="i-pessoa" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.6 3-6 7-6s7 2.4 7 6"/></symbol>
+</svg>
+
+<!-- ============================================================
+     FAIXA DO TOPO
+     ============================================================ -->
+<div class="faixa">Exclusivo para oficinas que faturam <strong>a partir de R$ 30 mil por mês</strong></div>
+
+<!-- ============================================================
+     TOPO FIXO
+     ============================================================ -->
+<header class="topo">
+  <div class="container">
+    <a class="logo" href="#inicio" aria-label="Aceleradora de Vendas para Oficinas — início">
+      <!-- TROCAR: quando tiver a logo, apague os dois <span> abaixo e use:
+           <img src="logo.svg" alt="Aceleradora de Vendas para Oficinas" width="180" height="36"> -->
+      <span class="logo-l1">Aceleradora de Vendas</span>
+      <span class="logo-l2 grad-texto">para Oficinas</span>
+    </a>
+    <button type="button" class="btn-topo" data-abrir-modal>Agendar Raio X</button>
+  </div>
+</header>
+
+<main id="inicio">
+
+<!-- ============================================================
+     1. HERO
+     ============================================================ -->
+<section class="hero" id="hero">
+  <!-- Animações de fundo: brilhos, grade em movimento e riscos de luz -->
+  <div class="hero-fundo" aria-hidden="true">
+    <span class="brilho b1"></span><span class="brilho b2"></span><span class="brilho b3"></span>
+    <span class="grade"></span>
+    <span class="farol f1"></span><span class="farol f2"></span><span class="farol f3"></span><span class="farol f4"></span><span class="farol f5"></span>
+    <span class="farol volta f6"></span><span class="farol volta f7"></span>
+  </div>
+  <div class="container">
+    <div class="hero-conteudo">
+      <span class="etiqueta">Raio X da Oficina • Online • 30 minutos</span>
+      <h1><span>Sua oficina com mais clientes</span> <span class="grad-texto">ou seu dinheiro de volta.</span></h1>
+      <div class="cta">
+        <button type="button" class="btn" data-abrir-modal>Agendar demonstração</button>
+              </div>
+      <p class="chips-rotulo">Para oficinas de todos os tipos:</p>
+      <ul class="chips">
+        <li>Funilaria e pintura</li>
+        <li>Martelinho de ouro</li>
+        <li>Câmbio automático</li>
+        <li>Ar-condicionado</li>
+        <li>Auto center</li>
+        <li>Importados</li>
+        <li>Mecânica geral</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     2. SINAIS / DORES (clara)
+     ============================================================ -->
+<section class="sec sec-clara" aria-labelledby="t-sinais">
+  <div class="container">
+    <div class="sec-cabecalho reveal">
+      <span class="sobretitulo">Sinais de alerta</span>
+      <h2 id="t-sinais">Sua oficina tem algum desses sinais?</h2>
+      <p class="sec-sub">Eles parecem problemas do dia a dia. Na prática, são sintomas de que alguma etapa do negócio está travada.</p>
+    </div>
+    <ul class="grade-sinais">
+      <li class="cartao-claro sinal reveal">
+        <span class="ico-caixa"><svg class="ico" aria-hidden="true"><use href="#i-carro"/></svg></span>
+        <div><h3>Elevador vazio</h3><p>Nenhum carro subindo. O elevador fica parado, a equipe sem serviço e as contas chegando do mesmo jeito.</p></div>
+      </li>
+      <li class="cartao-claro sinal reveal">
+        <span class="ico-caixa"><svg class="ico" aria-hidden="true"><use href="#i-pessoas"/></svg></span>
+        <div><h3>Depende só de indicação</h3><p>Vender só por indicação é deixar o seu faturamento na mão dos outros. Quando ela não vem, você não tem o que fazer.</p></div>
+      </li>
+      <li class="cartao-claro sinal reveal">
+        <span class="ico-caixa"><svg class="ico" aria-hidden="true"><use href="#i-orcamento"/></svg></span>
+        <div><h3>Passou o orçamento e o cliente desistiu?</h3><p>Você acha o problema, passa o valor e ele desiste de arrumar. E você fica no prejuízo: tempo perdido é dinheiro perdido.</p></div>
+      </li>
+      <li class="cartao-claro sinal reveal">
+        <span class="ico-caixa"><svg class="ico" aria-hidden="true"><use href="#i-relogio"/></svg></span>
+        <div><h3>Você tem que parar o tempo inteiro?</h3><p>Toda hora larga a ferramenta para responder o WhatsApp. O serviço atrasa, e a resposta ainda chega tarde.</p></div>
+      </li>
+      <li class="cartao-claro sinal reveal">
+        <span class="ico-caixa"><svg class="ico" aria-hidden="true"><use href="#i-queda"/></svg></span>
+        <div><h3>Serviços baratos ou descontos</h3><p>Para fechar, você baixa o preço. O elevador até enche, mas no fim do mês sobra pouco no caixa.</p></div>
+      </li>
+      <li class="cartao-claro sinal reveal">
+        <span class="ico-caixa"><svg class="ico" aria-hidden="true"><use href="#i-retorno"/></svg></span>
+        <div><h3>Cliente que não volta</h3><p>O serviço ficou bem feito, mas na próxima revisão ele vai para outro lugar. Ninguém lembrou dele.</p></div>
+      </li>
+    </ul>
+    <p class="fecho reveal">Cada um desses sinais aponta para um erro diferente — e cada erro tem uma solução diferente.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. OS 3 ESTÁGIOS (escura)
+     ============================================================ -->
+<section class="sec sec-escura" aria-labelledby="t-estagios">
+  <div class="container">
+    <div class="sec-cabecalho reveal">
+      <span class="sobretitulo">O que o Raio X revela</span>
+      <h2 id="t-estagios">Sua oficina está errando em uma destas 3 etapas</h2>
+      <p class="sec-sub">Não é falta de sorte, nem culpa da crise. O erro muda conforme o faturamento: o que trava uma oficina em R$ 70 mil não é o que trava outra em R$ 300 mil.</p>
+    </div>
+    <ol class="trilha">
+
+      <!-- Etapa 1 -->
+      <li class="reveal">
+        <span class="trilha-no" aria-hidden="true">01</span>
+        <article class="cartao-escuro estagio">
+          <div class="visual" aria-hidden="true">
+            <div class="vagas"><i><svg><use href="#i-carro"/></svg></i><i></i><i></i><i></i><i></i></div>
+            <span class="visual-legenda">Um carro no elevador. O resto, parado.</span>
+          </div>
+          <div class="estagio-corpo">
+            <span class="estagio-rotulo">Etapa 1</span>
+            <span class="estagio-faixa">Travado em R$ 60–70 mil mensais</span>
+            <h3>Pouca demanda</h3>
+            <p class="estagio-provoca">Sua oficina é boa. O problema é que quase ninguém sabe disso.</p>
+            <p class="estagio-texto">Identificamos onde você está errando e por que o concorrente que abriu há pouco tempo tem mais clientes do que você.</p>
+            <h4>Onde costuma estar o erro</h4>
+            <ul class="erros">
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg>Esperar a indicação aparecer</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg>Sumir quando o cliente procura no Google</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg>Achar que serviço bem feito se vende sozinho</li>
+            </ul>
+            <p class="estagio-caminho"><strong>O caminho:</strong> anúncios no Google e no Instagram para quem procura o seu serviço na sua região.</p>
+          </div>
+        </article>
+      </li>
+
+      <!-- Etapa 2 -->
+      <li class="reveal">
+        <span class="trilha-no" aria-hidden="true">02</span>
+        <article class="cartao-escuro estagio">
+          <div class="visual" aria-hidden="true">
+            <div class="funil">
+              <div><b>Pediu orçamento</b><span><i style="width:100%"></i></span></div>
+              <div><b>Teve retorno</b><span><i style="width:52%"></i></span></div>
+              <div><b>Fechou o serviço</b><span><i style="width:22%"></i></span></div>
+            </div>
+            <span class="visual-legenda">O dinheiro some entre uma etapa e outra.</span>
+          </div>
+          <div class="estagio-corpo">
+            <span class="estagio-rotulo">Etapa 2</span>
+            <span class="estagio-faixa">Travado em R$ 100–150 mil mensais</span>
+            <h3>Dinheiro escapando</h3>
+            <p class="estagio-provoca">O cliente chegou até você. E você deixou ele ir embora.</p>
+            <p class="estagio-texto">Mostramos em que ponto do atendimento a venda morre e quanto isso custa: do “quanto fica?” no WhatsApp até o carro na rampa.</p>
+            <h4>Onde costuma estar o erro</h4>
+            <ul class="erros">
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg>Responder o WhatsApp só quando sobra tempo</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg>Mandar o orçamento e nunca mais cobrar resposta</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg>Dar desconto antes de o cliente pedir</li>
+            </ul>
+            <p class="estagio-caminho"><strong>O caminho:</strong> acompanhamento comercial, processo de atendimento e CRM.</p>
+          </div>
+        </article>
+      </li>
+
+      <!-- Etapa 3 -->
+      <li class="reveal">
+        <span class="trilha-no" aria-hidden="true">03</span>
+        <article class="cartao-escuro estagio">
+          <div class="visual" aria-hidden="true">
+            <div class="clientes">
+              <i><svg viewBox="0 0 24 24"><use href="#i-pessoa"/></svg></i><i><svg viewBox="0 0 24 24"><use href="#i-pessoa"/></svg></i><i><svg viewBox="0 0 24 24"><use href="#i-pessoa"/></svg></i><i><svg viewBox="0 0 24 24"><use href="#i-pessoa"/></svg></i><i><svg viewBox="0 0 24 24"><use href="#i-pessoa"/></svg></i>
+            </div>
+            <span class="visual-legenda">Vieram uma vez. Só um voltou.</span>
+          </div>
+          <div class="estagio-corpo">
+            <span class="estagio-rotulo">Etapa 3</span>
+            <span class="estagio-faixa">Travado em R$ 200–300 mil mensais</span>
+            <h3>Cliente que não volta</h3>
+            <p class="estagio-provoca">Você conserta o carro e entrega o cliente de bandeja para o concorrente.</p>
+            <p class="estagio-texto">Mostramos quanto vale a base de clientes que está parada no seu cadastro e por que quem já confiou em você faz a próxima revisão em outro lugar.</p>
+            <h4>Onde costuma estar o erro</h4>
+            <ul class="erros">
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg>Nunca mais falar com quem já pagou</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg>Não avisar que a revisão está chegando</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg>Gastar com cliente novo e esquecer o antigo</li>
+            </ul>
+            <p class="estagio-caminho"><strong>O caminho:</strong> relacionamento e retorno dos clientes que já estão na sua base.</p>
+          </div>
+        </article>
+      </li>
+    </ol>
+    <div class="cta cta-centro reveal">
+      <button type="button" class="btn" data-abrir-modal>Quero meu Raio X da Oficina</button>
+          </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     4. O QUE VOCÊ LEVA DO RAIO X (clara)
+     ============================================================ -->
+<section class="sec sec-clara" aria-labelledby="t-leva">
+  <div class="container leva-grade">
+    <div class="reveal">
+      <span class="sobretitulo">O que você leva</span>
+      <h2 id="t-leva">Em 30 minutos, você sai sabendo:</h2>
+      <ul class="lista-check" style="margin-top:28px">
+        <li><i class="check-bola"><svg aria-hidden="true"><use href="#i-check"/></svg></i><span>Em qual etapa a sua oficina está errando</span></li>
+        <li><i class="check-bola"><svg aria-hidden="true"><use href="#i-check"/></svg></i><span>Onde você está perdendo clientes e dinheiro hoje</span></li>
+        <li><i class="check-bola"><svg aria-hidden="true"><use href="#i-check"/></svg></i><span>Quanto poderia faturar a mais com o que já tem</span></li>
+        <li><i class="check-bola"><svg aria-hidden="true"><use href="#i-check"/></svg></i><span>O que fazer primeiro — a prioridade número um</span></li>      </ul>
+    </div>
+    <div class="como reveal">
+      <h3>Como funciona</h3>
+      <ol class="passos">
+        <li class="cartao-claro passo"><span class="passo-num" aria-hidden="true">1</span><div><strong>Responda 5 perguntas</strong><span>Rápidas, sobre a sua oficina.</span></div></li>
+        <li class="cartao-claro passo"><span class="passo-num" aria-hidden="true">2</span><div><strong>Escolha o melhor horário</strong><span>Você agenda na hora, direto na agenda.</span></div></li>
+        <li class="cartao-claro passo"><span class="passo-num" aria-hidden="true">3</span><div><strong>Raio X online de 30 min</strong><span>Por videochamada, no Google Meet ou Zoom.</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. COMPARATIVO (escura)
+     ============================================================ -->
+<section class="sec sec-escura" aria-labelledby="t-comp">
+  <div class="container">
+    <div class="sec-cabecalho reveal">
+      <span class="sobretitulo">Compare antes de decidir</span>
+      <h2 id="t-comp">Agências genéricas não entendem as verdadeiras necessidades de quem toca uma oficina.</h2>
+    </div>
+    <div class="comparativo">
+      <span class="comp-vs" aria-hidden="true">VS</span>
+
+      <div class="comp comp-nos reveal">
+        <span class="comp-selo">Com a gente</span>
+        <h3>Aceleradora de Vendas para Oficinas</h3>
+        <ul>
+          <li><span class="marca sim"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>Trabalha só com oficinas</li>
+          <li><span class="marca sim"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>Raio X da oficina antes de qualquer proposta</li>
+          <li><span class="marca sim"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>Anúncios no Google e no Instagram</li>
+          <li><span class="marca sim"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>Acompanha o atendimento e os orçamentos</li>
+          <li><span class="marca sim"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>CRM e processo comercial</li>
+          <li><span class="marca sim"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>Traz de volta os clientes da sua base</li>
+          <li><span class="marca sim"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>Garantia: sem resultado, valor devolvido*</li>
+        </ul>
+      </div>
+
+      <div class="comp comp-eles reveal">
+        <span class="comp-selo">Concorrência</span>
+        <h3>Agência de marketing comum</h3>
+        <ul>
+          <li><span class="marca nao"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg></span>Atende qualquer tipo de empresa</li>
+          <li><span class="marca nao"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg></span>O mesmo pacote para todo mundo</li>
+          <li><span class="marca neutro"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>Anúncios no Google e no Instagram</li>
+          <li><span class="marca nao"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg></span>Entrega o contato e o resto é com você</li>
+          <li><span class="marca nao"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg></span>Sem processo comercial</li>
+          <li><span class="marca nao"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg></span>Sua base de clientes continua parada</li>
+          <li><span class="marca nao"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg></span>Sem garantia: o risco é todo seu</li>
+        </ul>
+      </div>
+    </div>
+    <p class="comp-nota reveal">*Condições apresentadas no Raio X.</p>
+    <p class="frase-final reveal">No Raio X, mostramos qual desses pontos faz mais falta na sua oficina agora.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. GARANTIA (clara)
+     ============================================================ -->
+<section class="sec sec-clara" aria-labelledby="t-garantia">
+  <div class="container estreito">
+    <div class="garantia reveal">
+      <div class="selo"><svg aria-hidden="true"><use href="#i-escudo"/></svg></div>
+      <h2 id="t-garantia">Mais clientes ou seu dinheiro de volta</h2>
+      <p>Trabalhamos com garantia de resultado. Se a sua oficina contratar o nosso serviço e não houver resultado, <strong>devolvemos o valor investido no serviço</strong>. As condições são apresentadas no Raio X.</p>
+      <p class="nota">O Raio X em si é <strong>gratuito, mas exclusivo</strong>: não fazemos com qualquer oficina.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. PARA QUEM É / PARA QUEM NÃO É (escura)
+     ============================================================ -->
+<section class="sec sec-escura" aria-labelledby="t-quem">
+  <div class="container">
+    <div class="sec-cabecalho reveal">
+      <span class="sobretitulo">Antes de agendar</span>
+      <h2 id="t-quem">O Raio X é para a sua oficina?</h2>
+    </div>
+    <div class="grade-2">
+      <div class="cartao-escuro quem quem-sim reveal">
+        <h3>É para você se:</h3>
+        <ul>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>É dono ou gestor de oficina e quer crescer com previsibilidade</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Sua oficina fatura a partir de R$ 30 mil por mês</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Está disposto a investir em anúncios para atrair clientes</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Quer organizar o comercial: atendimento, orçamentos e retorno</span></li>
+        </ul>
+      </div>
+      <div class="cartao-escuro quem quem-nao reveal">
+        <h3>Não é para você se:</h3>
+        <ul>
+          <li><svg class="ico ico-cinza" aria-hidden="true"><use href="#i-x"/></svg><span>Busca milagre sem nenhum investimento</span></li>
+          <li><svg class="ico ico-cinza" aria-hidden="true"><use href="#i-x"/></svg><span>Não tem disponibilidade para atender os novos clientes</span></li>
+          <li><svg class="ico ico-cinza" aria-hidden="true"><use href="#i-x"/></svg><span>Sua empresa não é uma oficina</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     8. SOBRE (clara)
+     ============================================================ -->
+<!-- (seção "Sobre" retirada) -->
+
+<!-- ============================================================
+     9. FAQ (clara, com cards escuros)
+     ============================================================ -->
+<section class="sec sec-clara" aria-labelledby="t-faq">
+  <div class="container estreito">
+    <div class="sec-cabecalho reveal">
+      <span class="sobretitulo">Perguntas frequentes</span>
+      <h2 id="t-faq">Dúvidas antes de agendar</h2>
+    </div>
+    <div class="faq" id="faq">
+      <div class="faq-item">
+        <h3><button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p1" id="faq-b1">O Raio X é gratuito mesmo? Tem pegadinha?<span class="faq-mais" aria-hidden="true"></span></button></h3>
+        <div class="faq-painel" id="faq-p1" role="region" aria-labelledby="faq-b1"><div><p>É gratuito: você não paga nada e não informa cartão. Mas não é para qualquer um. O Raio X é exclusivo, não fazemos com toda oficina que pede, e exige compromisso de quem agenda: comparecer no horário, com os números da oficina em mãos.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <h3><button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p2" id="faq-b2">Quanto tempo dura e como funciona?<span class="faq-mais" aria-hidden="true"></span></button></h3>
+        <div class="faq-painel" id="faq-p2" role="region" aria-labelledby="faq-b2"><div><p>Dura 30 minutos e acontece por videochamada, no Google Meet ou no Zoom. Você responde 5 perguntas, escolhe o horário e recebe o link. Na conversa, fazemos perguntas sobre a oficina e apresentamos o Raio X.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <h3><button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p3" id="faq-b3">Preciso preparar alguma coisa?<span class="faq-mais" aria-hidden="true"></span></button></h3>
+        <div class="faq-painel" id="faq-p3" role="region" aria-labelledby="faq-b3"><div><p>Sim. Traga 3 concorrentes da sua região: vamos te mostrar a diferença entre eles e a sua oficina. Tenha também uma noção do faturamento mensal, do ticket médio, de quantos carros atende por mês e de como os clientes chegam hoje.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <h3><button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p4" id="faq-b4">Funciona para o meu tipo de oficina?<span class="faq-mais" aria-hidden="true"></span></button></h3>
+        <div class="faq-painel" id="faq-p4" role="region" aria-labelledby="faq-b4"><div><p>O Raio X vale para qualquer oficina de carro: funilaria e pintura, martelinho de ouro, câmbio automático, ar-condicionado, auto center, especializada em importados ou mecânica geral. As 3 etapas são as mesmas. O que muda é a prioridade de cada uma.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <h3><button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p5" id="faq-b5">Vocês vão tentar me vender alguma coisa?<span class="faq-mais" aria-hidden="true"></span></button></h3>
+        <div class="faq-painel" id="faq-p5" role="region" aria-labelledby="faq-b5"><div><p>Sim. Se fizer sentido para ambos os lados, vamos te apresentar uma proposta. Nós escolhemos poucos clientes: apenas aqueles que realmente podemos ajudar. Se a sua oficina não for um deles, dizemos isso na própria conversa.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <h3><button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p6" id="faq-b6">Minha cidade é pequena, funciona?<span class="faq-mais" aria-hidden="true"></span></button></h3>
+        <div class="faq-painel" id="faq-p6" role="region" aria-labelledby="faq-b6"><div><p>Depende da etapa e da região, e é exatamente isso que o Raio X avalia. Em cidades menores, o caminho costuma ser diferente do de uma capital. Se entendermos que não faz sentido para a sua realidade, falamos com clareza na própria reunião.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <h3><button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p7" id="faq-b7">Como funciona a garantia?<span class="faq-mais" aria-hidden="true"></span></button></h3>
+        <div class="faq-painel" id="faq-p7" role="region" aria-labelledby="faq-b7"><div><p>Trabalhamos com garantia de resultado: se a oficina contratar o serviço e não houver resultado, o valor investido no serviço é devolvido. As condições são apresentadas no Raio X, antes de qualquer decisão.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     10. CTA FINAL (escura, com brilho)
+     ============================================================ -->
+<section class="sec sec-escura cta-final" aria-labelledby="t-final">
+  <div class="container">
+    <h2 id="t-final" class="reveal">Pouca demanda, dinheiro escapando ou cliente que não volta: <span class="grad-texto">descubra onde a sua oficina está errando</span></h2>
+    <p class="reveal">30 minutos de conversa para sair sabendo o que fazer primeiro.</p>
+    <div class="cta reveal">
+      <button type="button" class="btn" data-abrir-modal>Quero meu Raio X da Oficina</button>
+          </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     11. RODAPÉ
+     ============================================================ -->
+<footer class="rodape">
+  <div class="container">
+    <div>
+      <strong>Aceleradora de Vendas para Oficinas</strong><br>
+      © <span id="ano">2026</span> • Todos os direitos reservados
+    </div>
+    <div class="rodape-dados">
+      <span>CNPJ 62.497.660/0001-87</span>
+      <a href="politica-de-privacidade.html">Política de Privacidade</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Barra fixa no rodapé da tela (apenas mobile) -->
+<div class="barra-fixa" id="barra-fixa">
+  <button type="button" class="btn" data-abrir-modal tabindex="-1">Quero meu Raio X da Oficina</button>
+</div>
+
+<!-- ============================================================
+     POP-UP COM AS PERGUNTAS DE QUALIFICAÇÃO
+     Abre ao clicar em qualquer botão com o atributo data-abrir-modal.
+     ============================================================ -->
+<dialog class="modal" id="modal" aria-labelledby="modal-titulo">
+  <div class="modal-caixa">
+    <button type="button" class="modal-fechar" id="modal-fechar" aria-label="Fechar">×</button>
+    <h2 id="modal-titulo">Você está a 5 perguntas do <span class="grad-texto">Raio X da sua oficina</span></h2>
+    <p class="modal-sub">Responda e, em seguida, escolha o melhor horário.</p>
+
+    <form id="form-raiox" novalidate>
+      <div class="progresso" role="progressbar" aria-labelledby="progresso-texto" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">
+        <div class="progresso-barra" id="progresso-barra"></div>
+      </div>
+      <ol class="stepper" id="stepper" aria-hidden="true">
+        <li class="atual"><b>1</b></li><li><b>2</b></li><li><b>3</b></li><li><b>4</b></li><li><b>5</b></li>
+      </ol>
+      <p class="progresso-texto" id="progresso-texto">Passo 1 de 5</p>
+
+      <!-- Passo 1 -->
+      <fieldset class="etapa" data-tipo="opcao" data-campo="funcao">
+        <legend tabindex="-1">Qual é a sua função na oficina?</legend>
+        <p class="etapa-ajuda">Para personalizar a conversa: falamos diferente com dono do que com gerente.</p>
+        <div class="opcoes">
+          <button type="button" class="opcao" aria-pressed="false" data-valor="Dono">Dono</button>
+          <button type="button" class="opcao" aria-pressed="false" data-valor="Gerente">Gerente</button>
+          <button type="button" class="opcao" aria-pressed="false" data-valor="Consultor">Consultor</button>
+          <button type="button" class="opcao" aria-pressed="false" data-valor="Outros">Outros</button>
+        </div>
+        <p class="erro" role="alert"></p>
+      </fieldset>
+
+      <!-- Passo 2 -->
+      <fieldset class="etapa" data-tipo="opcao" data-campo="meta_faturamento" hidden>
+        <legend tabindex="-1">Qual é a sua <mark class="destaque">META</mark> de faturamento mensal?</legend>
+        <p class="etapa-ajuda">Para sabermos aonde você quer chegar.</p>
+        <div class="opcoes">
+          <button type="button" class="opcao" aria-pressed="false" data-valor="R$ 60 mil a R$ 100 mil">R$ 60 mil a R$ 100 mil</button>
+          <button type="button" class="opcao" aria-pressed="false" data-valor="R$ 100 mil a R$ 200 mil">R$ 100 mil a R$ 200 mil</button>
+          <button type="button" class="opcao" aria-pressed="false" data-valor="R$ 200 mil a R$ 350 mil">R$ 200 mil a R$ 350 mil</button>
+          <button type="button" class="opcao" aria-pressed="false" data-valor="R$ 350 mil a R$ 500 mil">R$ 350 mil a R$ 500 mil</button>
+          <button type="button" class="opcao" aria-pressed="false" data-valor="Acima de R$ 500 mil">Acima de R$ 500 mil</button>
+        </div>
+        <p class="erro" role="alert"></p>
+      </fieldset>
+
+      <!-- Passo 3 -->
+      <fieldset class="etapa" data-tipo="opcao" data-campo="faturamento_atual" hidden>
+        <legend tabindex="-1">Qual é o seu faturamento <mark class="destaque">ATUAL</mark> por mês?</legend>
+        <p class="etapa-ajuda">Para medir a distância até a meta. Um valor aproximado já serve.</p>
+        <div class="opcoes">
+          <button type="button" class="opcao" aria-pressed="false" data-valor="Até R$ 30 mil">Até R$ 30 mil</button>
+          <button type="button" class="opcao" aria-pressed="false" data-valor="R$ 30 mil a R$ 60 mil">R$ 30 mil a R$ 60 mil</button>
+          <button type="button" class="opcao" aria-pressed="false" data-valor="R$ 60 mil a R$ 100 mil">R$ 60 mil a R$ 100 mil</button>
+          <button type="button" class="opcao" aria-pressed="false" data-valor="R$ 100 mil a R$ 150 mil">R$ 100 mil a R$ 150 mil</button>
+          <button type="button" class="opcao" aria-pressed="false" data-valor="Acima de R$ 150 mil">Acima de R$ 150 mil</button>
+        </div>
+        <p class="erro" role="alert"></p>
+      </fieldset>
+
+      <!-- Passo 4 -->
+      <fieldset class="etapa" data-tipo="texto" hidden>
+        <legend tabindex="-1">Para quem enviamos a confirmação?</legend>
+        <p class="etapa-ajuda">A confirmação do horário chega pelo WhatsApp.</p>
+        <div class="campo">
+          <label for="f-nome">Nome</label>
+          <input type="text" id="f-nome" name="nome" autocomplete="name" maxlength="80" placeholder="Nome e sobrenome" data-msg="Informe o seu nome.">
+        </div>
+        <div class="campo">
+          <label for="f-email">E-mail <span class="opcional">(opcional)</span></label>
+          <input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="voce@email.com" data-opcional data-msg="Esse e-mail parece incompleto. Corrija ou deixe em branco.">
+        </div>
+        <div class="campo">
+          <label for="f-whats">Telefone (WhatsApp) com DDD</label>
+          <input type="tel" id="f-whats" name="whatsapp" autocomplete="tel-national" inputmode="numeric" maxlength="16" placeholder="(00) 00000-0000" data-msg="Esse telefone não é válido. Confira o DDD e o número.">
+        </div>
+        <p class="erro" role="alert"></p>
+      </fieldset>
+
+      <!-- Passo 5 -->
+      <fieldset class="etapa" data-tipo="texto" hidden>
+        <legend tabindex="-1">Qual é a sua oficina?</legend>
+        <p class="etapa-ajuda">Para olharmos a sua oficina e a sua região antes da conversa.</p>
+        <div class="campo">
+          <label for="f-oficina">Nome da oficina</label>
+          <input type="text" id="f-oficina" name="nome_oficina" autocomplete="organization" maxlength="100" placeholder="Ex.: Auto Center Silva" data-msg="Informe o nome da oficina.">
+        </div>
+        <div class="campo">
+          <label for="f-endereco">Endereço</label>
+          <input type="text" id="f-endereco" name="endereco" autocomplete="street-address" maxlength="200" placeholder="Rua X, número Y, Cidade tal" data-min="8" data-msg="Informe o endereço com rua, número e cidade.">
+        </div>
+        <p class="erro" role="alert"></p>
+      </fieldset>
+
+      <!-- Campo invisível contra robôs: pessoas não veem e não preenchem -->
+      <div class="armadilha" aria-hidden="true"><label>Não preencha este campo<input type="text" name="site" tabindex="-1" autocomplete="off"></label></div>
+
+      <div class="form-nav">
+        <button type="button" class="btn-voltar" id="btn-voltar" hidden>Voltar</button>
+        <button type="submit" class="btn" id="btn-continuar">Continuar</button>
+      </div>
+      <p class="form-seguro">
+        Seus dados estão seguros e serão usados apenas para contato.
+        <!-- Abre em nova aba para a pessoa não perder o que já respondeu no pop-up -->
+        <a href="politica-de-privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>
+      </p>
+    </form>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ============================================================
+     CONFIGURAÇÕES
+     ============================================================ */
+  // TROCAR: cole aqui a URL do App da Web do Google Apps Script (termina em /exec).
+  // O passo a passo está no arquivo "planilha-google-apps-script.js".
+  // NUNCA coloque aqui o link da planilha em si: só a URL do script.
+  var PLANILHA_URL = "";
+
+  // Webhook do GoHighLevel (gatilho "Inbound Webhook" do workflow): o lead vai para a planilha E para o GHL.
+  var WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/rabcs1GuK7W2kYJmdQxs/webhook-trigger/377e2689-ec4e-493e-a35e-0d781e024869";
+
+  var PAGINA_OBRIGADO = "obrigado.html";
+  var TOTAL_ETAPAS = 5;
+
+  /* ============================================================
+     PARÂMETROS UTM (capturados ao carregar a página)
+     ============================================================ */
+  var utms = {};
+  (function () {
+    var p;
+    try { p = new URLSearchParams(window.location.search); } catch (e) { p = null; }
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
+      utms[k] = p ? (p.get(k) || '') : '';
+    });
+  })();
+
+  /* ============================================================
+     ENVIO DO LEAD
+     Função isolada: recebe o objeto com todos os dados e envia para
+     a planilha do Google (via Apps Script) e, se configurado, para o GHL.
+     ============================================================ */
+  function enviarLead(dados) {
+    var envios = [];
+
+    if (PLANILHA_URL) {
+      // "no-cors" + texto puro: é o formato que o Apps Script aceita direto do navegador.
+      // Nesse modo o navegador não informa se deu certo; confira a planilha ao testar.
+      envios.push(fetch(PLANILHA_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(dados),
+        keepalive: true
+      }));
+    }
+    if (WEBHOOK_URL) {
+      envios.push(fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados),
+        keepalive: true
+      }));
+    }
+    if (!envios.length) {
+      console.log('[Lead — planilha e webhook ainda não configurados]', dados);
+      return Promise.resolve();
+    }
+
+    // Limite de 6 segundos: o visitante não fica preso se o envio demorar.
+    var limite = new Promise(function (resolve) { setTimeout(resolve, 6000); });
+    var tudo = Promise.all(envios.map(function (p) {
+      return p.catch(function (erro) { console.error('[Lead] Falha no envio:', erro); });
+    }));
+    return Promise.race([tudo, limite]);
+  }
+
+  /* ============================================================
+     POP-UP
+     ============================================================ */
+  var modal = document.getElementById('modal');
+  var form = document.getElementById('form-raiox');
+  var etapas = Array.prototype.slice.call(form.querySelectorAll('.etapa'));
+  var btnVoltar = document.getElementById('btn-voltar');
+  var btnContinuar = document.getElementById('btn-continuar');
+  var barra = document.getElementById('progresso-barra');
+  var progressoTexto = document.getElementById('progresso-texto');
+  var progresso = form.querySelector('.progresso');
+  var passosStepper = Array.prototype.slice.call(document.querySelectorAll('#stepper li'));
+  var respostas = {};   // respostas das perguntas de múltipla escolha
+  var atual = 0;
+  var enviando = false;
+  var jaAbriu = false;
+
+  function focarEtapa() {
+    var etapa = etapas[atual];
+    var alvo = etapa.querySelector('input') || etapa.querySelector('legend');
+    try { alvo.focus({ preventScroll: true }); } catch (e) { alvo.focus(); }
+  }
+
+  function abrirModal() {
+    if (modal.open) return;
+    if (typeof modal.showModal === 'function') { modal.showModal(); } else { modal.setAttribute('open', ''); }
+    document.documentElement.classList.add('modal-aberto');
+    atualizarBarra();
+    if (etapas[atual].getAttribute('data-tipo') === 'opcao') {
+      try { etapas[atual].querySelector('legend').focus({ preventScroll: true }); } catch (e) {}
+    }
+    if (!jaAbriu) {
+      jaAbriu = true;
+      registrarEvento('popup_aberto'); // evento 2 do funil
+    }
+  }
+  function fecharModal() {
+    if (enviando) return;
+    if (typeof modal.close === 'function') { modal.close(); } else { modal.removeAttribute('open'); }
+  }
+  modal.addEventListener('close', function () {
+    document.documentElement.classList.remove('modal-aberto');
+    atualizarBarra();
+  });
+  // Clique fora da caixa fecha o pop-up
+  modal.addEventListener('click', function (ev) { if (ev.target === modal) fecharModal(); });
+  modal.addEventListener('cancel', function (ev) { if (enviando) ev.preventDefault(); });
+  document.getElementById('modal-fechar').addEventListener('click', fecharModal);
+  Array.prototype.forEach.call(document.querySelectorAll('[data-abrir-modal]'), function (b) {
+    b.addEventListener('click', abrirModal);
+  });
+
+  /* ============================================================
+     FORMULÁRIO EM ETAPAS
+     ============================================================ */
+  function soDigitos(v) { return String(v).replace(/\D/g, ''); }
+
+  // Máscara (00) 00000-0000 — aceita também fixo com 10 dígitos
+  function mascaraTelefone(valor) {
+    var d = soDigitos(valor);
+    if (d.length > 11 && d.indexOf('55') === 0) { d = d.slice(2); } // remove o +55 se colarem o número completo
+    d = d.slice(0, 11);
+    if (!d.length) return '';
+    if (d.length < 3) return '(' + d;
+    if (d.length < 7) return '(' + d.slice(0, 2) + ') ' + d.slice(2);
+    if (d.length < 11) return '(' + d.slice(0, 2) + ') ' + d.slice(2, 6) + '-' + d.slice(6);
+    return '(' + d.slice(0, 2) + ') ' + d.slice(2, 7) + '-' + d.slice(7);
+  }
+
+  // DDDs que existem no Brasil
+  var DDDS = '11 12 13 14 15 16 17 18 19 21 22 24 27 28 31 32 33 34 35 37 38 41 42 43 44 45 46 47 48 49 51 53 54 55 61 62 63 64 65 66 67 68 69 71 73 74 75 77 79 81 82 83 84 85 86 87 88 89 91 92 93 94 95 96 97 98 99'.split(' ');
+
+  // Confere se o número segue as regras de um telefone brasileiro real:
+  // DDD existente, celular com 9 dígitos começando em 9 (ou fixo com 8 começando em 2 a 5)
+  // e nada de número repetido (99999-9999).
+  // Observação: isso valida o formato; só um SMS de confirmação provaria que a linha existe.
+  function telefoneValido(d) {
+    if (d.length !== 10 && d.length !== 11) return false;
+    if (DDDS.indexOf(d.slice(0, 2)) === -1) return false;
+    var numero = d.slice(2);
+    if (/^(\d)\1+$/.test(numero)) return false;
+    if (d.length === 11) return numero.charAt(0) === '9';
+    return /^[2-5]/.test(numero);
+  }
+
+  function mostrarErro(etapa, msg) { etapa.querySelector('.erro').textContent = msg || ''; }
+
+  function mostrarEtapa(indice, direcao, focar) {
+    etapas.forEach(function (e, i) {
+      e.hidden = i !== indice;
+      e.classList.remove('entra', 'entra-volta');
+    });
+    etapas[indice].classList.add(direcao === 'volta' ? 'entra-volta' : 'entra');
+    atual = indice;
+
+    // Barra de progresso + passos numerados
+    barra.style.width = ((indice + 1) / TOTAL_ETAPAS * 100) + '%';
+    progressoTexto.textContent = 'Passo ' + (indice + 1) + ' de ' + TOTAL_ETAPAS;
+    progresso.setAttribute('aria-valuenow', String(indice + 1));
+    passosStepper.forEach(function (li, i) {
+      li.className = i < indice ? 'feito' : (i === indice ? 'atual' : '');
+      li.firstChild.textContent = i < indice ? '✓' : String(i + 1);
+    });
+
+    // Botões
+    btnVoltar.hidden = indice === 0;
+    btnContinuar.textContent = indice === TOTAL_ETAPAS - 1 ? 'Quero meu Raio X' : 'Continuar';
+
+    if (focar) focarEtapa();
+  }
+
+  function validarEtapa(indice) {
+    var etapa = etapas[indice];
+    mostrarErro(etapa, '');
+
+    if (etapa.getAttribute('data-tipo') === 'opcao') {
+      if (!respostas[etapa.getAttribute('data-campo')]) {
+        mostrarErro(etapa, 'Escolha uma das opções para continuar.');
+        return false;
+      }
+      return true;
+    }
+
+    var campos = Array.prototype.slice.call(etapa.querySelectorAll('input'));
+    for (var i = 0; i < campos.length; i++) {
+      var campo = campos[i];
+      var valor = campo.value.trim();
+      var minimo = parseInt(campo.getAttribute('data-min'), 10) || 2;
+      var ok = valor.length >= minimo;
+      if (campo.name === 'whatsapp') {
+        ok = telefoneValido(soDigitos(valor));
+      } else if (campo.name === 'email') {
+        // E-mail é opcional: vazio passa; se preencher, precisa ter formato de e-mail
+        ok = valor === '' || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor);
+      }
+      campo.setAttribute('aria-invalid', ok ? 'false' : 'true');
+      if (!ok) {
+        mostrarErro(etapa, campo.getAttribute('data-msg'));
+        campo.focus();
+        return false;
+      }
+    }
+    return true;
+  }
+
+  var jaPreencheu = false;
+
+  function avancar() {
+    if (enviando || !validarEtapa(atual)) return;
+    // Evento 3 do funil: respondeu as 3 perguntas de qualificação (vai para os dados de contato)
+    if (atual === 2 && !jaPreencheu) {
+      jaPreencheu = true;
+      registrarEvento('popup_preenchido', {
+        funcao: respostas.funcao,
+        faturamento_atual: respostas.faturamento_atual,
+        meta_faturamento: respostas.meta_faturamento
+      });
+    }
+    if (atual < TOTAL_ETAPAS - 1) { mostrarEtapa(atual + 1, 'frente', true); }
+    else { finalizar(); }
+  }
+
+  // Múltipla escolha: ao clicar na opção, marca e avança automaticamente
+  form.addEventListener('click', function (ev) {
+    var opcao = ev.target.closest ? ev.target.closest('.opcao') : null;
+    if (!opcao || enviando) return;
+    var etapa = opcao.closest('.etapa');
+    Array.prototype.forEach.call(etapa.querySelectorAll('.opcao'), function (o) {
+      o.setAttribute('aria-pressed', o === opcao ? 'true' : 'false');
+    });
+    respostas[etapa.getAttribute('data-campo')] = opcao.getAttribute('data-valor');
+    mostrarErro(etapa, '');
+    var indice = etapas.indexOf(etapa);
+    setTimeout(function () { if (atual === indice) avancar(); }, 220);
+  });
+
+  // Limpa o erro enquanto a pessoa digita + máscara do WhatsApp
+  form.addEventListener('input', function (ev) {
+    var campo = ev.target;
+    var etapa = campo.closest('.etapa');
+    if (!etapa) return;
+    if (campo.name === 'whatsapp') { campo.value = mascaraTelefone(campo.value); }
+    campo.removeAttribute('aria-invalid');
+    mostrarErro(etapa, '');
+  });
+
+  btnVoltar.addEventListener('click', function () {
+    if (!enviando && atual > 0) mostrarEtapa(atual - 1, 'volta', true);
+  });
+
+  // "Continuar" e a tecla Enter passam por aqui
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    avancar();
+  });
+
+  function finalizar() {
+    enviando = true;
+    btnContinuar.disabled = true;
+    btnVoltar.disabled = true;
+    btnContinuar.innerHTML = '<span class="girando" aria-hidden="true"></span>Enviando…';
+
+    var nome = form.elements.nome.value.trim().replace(/\s+/g, ' ');
+    var primeiroNome = nome.split(' ')[0];
+    var telefone = soDigitos(form.elements.whatsapp.value);
+    var agora = new Date();
+
+    // Código único deste lead. Vai igual para o Pixel (via GTM) e para a API de
+    // Conversões: é assim que a Meta percebe que é o MESMO lead e não conta duas vezes.
+    var eventId = 'lead_' + agora.getTime() + '_' + Math.random().toString(36).slice(2, 10);
+
+    // Cookies que a Meta cria no navegador (_fbp = visitante, _fbc = clique no anúncio).
+    // Servem para a API de Conversões ligar o lead ao anúncio que trouxe a pessoa.
+    // try/catch: alguns navegadores bloqueiam cookies; nesse caso segue sem eles.
+    function lerCookie(nome) {
+      try {
+        var m = document.cookie.match(new RegExp('(?:^|; )' + nome + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : '';
+      } catch (e) { return ''; }
+    }
+
+    // Objeto completo do lead
+    var dados = {
+      event_id: eventId,
+      fbp: lerCookie('_fbp'),
+      fbc: lerCookie('_fbc'),
+      user_agent: navigator.userAgent,
+      funcao: respostas.funcao,
+      meta_faturamento: respostas.meta_faturamento,
+      faturamento_atual: respostas.faturamento_atual,
+      nome_oficina: form.elements.nome_oficina.value.trim(),
+      endereco: form.elements.endereco.value.trim(),
+      nome: nome,
+      email: form.elements.email.value.trim(),
+      primeiro_nome: primeiroNome,
+      whatsapp: mascaraTelefone(telefone),
+      whatsapp_internacional: '+55' + telefone, // formato +55DDDNÚMERO: é o que o GHL usa para casar o contato com a conversa do WhatsApp
+      data_hora: agora.toISOString(),
+      data_hora_local: agora.toLocaleString('pt-BR'),
+      url_origem: window.location.href,
+      referencia: document.referrer || '',
+      utm_source: utms.utm_source,
+      utm_medium: utms.utm_medium,
+      utm_campaign: utms.utm_campaign,
+      utm_content: utms.utm_content,
+      utm_term: utms.utm_term
+    };
+
+    // Primeiro nome para personalizar a página de obrigado.
+    // Fica só no sessionStorage: nenhum dado pessoal vai pela URL.
+    try { sessionStorage.setItem('lead_primeiro_nome', primeiroNome); } catch (e) {}
+
+    // Se o campo invisível foi preenchido, é um robô: não grava nada.
+    var ehRobo = !!form.elements.site.value;
+
+    (ehRobo ? Promise.resolve() : enviarLead(dados)).then(function () {
+      if (!ehRobo) {
+        /* ---------- RASTREAMENTO ---------- */
+        // Evento 4 do funil = LEAD. O Pixel da Meta fica no GTM: lá, a tag "Lead"
+        // dispara neste evento e usa {{event_id}} como "Event ID". O event_id é o
+        // MESMO enviado ao GHL/planilha, para deduplicar com a API de Conversões.
+        // dataLayer: sem nome, telefone ou endereço.
+        registrarEvento('formulario_enviado', {
+          funcao: dados.funcao,
+          faturamento_atual: dados.faturamento_atual,
+          meta_faturamento: dados.meta_faturamento
+        }, dados.event_id);
+      }
+      // Pequena espera para os eventos saírem antes do redirecionamento
+      setTimeout(function () { window.location.href = PAGINA_OBRIGADO; }, 450);
+    });
+  }
+
+  // Se a pessoa voltar pelo botão "voltar" do navegador, reativa o formulário
+  window.addEventListener('pageshow', function (ev) {
+    if (ev.persisted) {
+      enviando = false;
+      btnContinuar.disabled = false;
+      btnVoltar.disabled = false;
+      mostrarEtapa(atual, 'frente', false);
+    }
+  });
+
+  /* ============================================================
+     FAQ — acordeão com um item aberto por vez
+     ============================================================ */
+  var itensFaq = Array.prototype.slice.call(document.querySelectorAll('.faq-item'));
+  itensFaq.forEach(function (item) {
+    var botao = item.querySelector('.faq-btn');
+    botao.addEventListener('click', function () {
+      var abrir = !item.classList.contains('aberto');
+      itensFaq.forEach(function (outro) {
+        outro.classList.remove('aberto');
+        outro.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+      });
+      if (abrir) {
+        item.classList.add('aberto');
+        botao.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ============================================================
+     ANIMAÇÕES DE ENTRADA + BARRA FIXA DO MOBILE
+     ============================================================ */
+  var revelar = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var barraFixa = document.getElementById('barra-fixa');
+  var botaoBarra = barraFixa.querySelector('button');
+  var heroVisivel = true;
+
+  // A barra aparece depois da hero e some enquanto o pop-up está aberto
+  function atualizarBarra() {
+    var mostrar = !heroVisivel && !modal.open;
+    barraFixa.classList.toggle('visivel', mostrar);
+    botaoBarra.tabIndex = mostrar ? 0 : -1;
+  }
+
+  if ('IntersectionObserver' in window) {
+    var obsReveal = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visivel'); obsReveal.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    revelar.forEach(function (el) { obsReveal.observe(el); });
+
+    new IntersectionObserver(function (entradas) {
+      heroVisivel = entradas[0].isIntersecting;
+      atualizarBarra();
+    }, { threshold: 0 }).observe(document.getElementById('hero'));
+  } else {
+    revelar.forEach(function (el) { el.classList.add('visivel'); });
+  }
+
+  // Ano atual no rodapé
+  document.getElementById('ano').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

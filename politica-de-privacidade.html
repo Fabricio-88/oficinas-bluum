@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Política de Privacidade | Aceleradora de Vendas para Oficinas</title>
+<meta name="description" content="Como a Aceleradora de Vendas para Oficinas coleta, usa, compartilha e protege os seus dados pessoais.">
+<meta name="theme-color" content="#0B0B0C">
+
+<!-- ============================================================
+     POLÍTICA DE PRIVACIDADE
+     Texto-base escrito a partir do que o site realmente coleta.
+     Recomendado: peça para um advogado revisar antes de publicar.
+     Se mudar o que o formulário pergunta ou as ferramentas usadas,
+     atualize as seções 2 e 4 e a data abaixo.
+     ============================================================ -->
+
+<!-- Google Fonts: Inter (textos) e Sora (títulos) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   VARIÁVEIS E BASE (mesma identidade da landing page)
+   ============================================================ */
+:root{
+  --preto:#0B0B0C;
+  --preto-2:#161618;
+  --claro:#EEEEEC;
+  --branco:#FFFFFF;
+  --texto-escuro:#1A1A1A;
+  --texto-escuro-2:#4A4A4A;
+  --texto-claro:#F5F5F3;
+  --texto-claro-2:#A8A8A8;
+  --vermelho:#D7262E;
+  --vermelho-texto:#C0202A;
+  --gradiente:linear-gradient(90deg,#A8121A 0%,#D7262E 55%,#F03F3A 100%);
+  --gradiente-texto:linear-gradient(90deg,#E5323A 0%,#FF5A4D 100%);
+  --borda-escura:rgba(255,255,255,.09);
+  --borda-clara:rgba(0,0,0,.08);
+  --fonte:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --fonte-titulo:'Sora','Inter',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--fonte);font-size:16px;line-height:1.7;color:var(--texto-escuro);background:var(--claro);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,p,ul{margin:0}
+a{color:var(--vermelho-texto);text-underline-offset:3px}
+:focus-visible{outline:3px solid #FF5A4D;outline-offset:3px;border-radius:6px}
+.container{width:100%;max-width:820px;margin:0 auto;padding:0 20px}
+.grad-texto{background:var(--gradiente-texto);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- Topo ---------- */
+.topo{height:60px;border-bottom:1px solid var(--borda-escura);background:var(--preto)}
+.topo .container{max-width:1140px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;flex-direction:column;line-height:1.15;font-family:var(--fonte-titulo);color:var(--texto-claro);text-decoration:none}
+.logo span{font-size:12px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.logo-l1{font-weight:800}
+.logo-l2{font-weight:700}
+.voltar{font-size:14px;font-weight:600;color:var(--texto-claro-2);text-decoration:none;white-space:nowrap}
+.voltar:hover{color:var(--texto-claro)}
+
+/* ---------- Cabeçalho escuro ---------- */
+.cabecalho{background:var(--preto);color:var(--texto-claro);padding:40px 0 44px;position:relative;overflow:hidden;isolation:isolate}
+.cabecalho::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 80% at 90% 0%,rgba(240,63,58,.18),transparent 70%)}
+.cabecalho h1{font-family:var(--fonte-titulo);font-weight:800;font-size:clamp(28px,7vw,42px);line-height:1.18;letter-spacing:-.02em}
+.cabecalho p{margin-top:12px;color:var(--texto-claro-2);font-size:15px}
+
+/* ---------- Conteúdo ---------- */
+.conteudo{padding:36px 0 64px}
+.conteudo section{padding:26px 0;border-bottom:1px solid var(--borda-clara)}
+.conteudo section:last-child{border-bottom:0}
+.conteudo h2{font-family:var(--fonte-titulo);font-weight:700;font-size:20px;line-height:1.3;margin-bottom:12px;letter-spacing:-.01em}
+.conteudo h2 b{color:var(--vermelho-texto);margin-right:6px}
+.conteudo p+p,.conteudo p+ul,.conteudo ul+p{margin-top:12px}
+.conteudo ul{padding-left:20px}
+.conteudo li{margin-top:6px}
+.conteudo li::marker{color:var(--vermelho)}
+.conteudo strong{font-weight:600}
+.resumo{background:var(--branco);border:1px solid var(--borda-clara);border-left:4px solid var(--vermelho);border-radius:12px;padding:18px 20px;margin-bottom:8px}
+.resumo p{color:var(--texto-escuro-2)}
+
+/* ---------- Rodapé ---------- */
+.rodape{background:var(--preto);border-top:1px solid var(--borda-escura);padding:28px 0;font-size:14px;color:var(--texto-claro-2)}
+.rodape .container{max-width:1140px;display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center}
+.rodape strong{color:var(--texto-claro);font-family:var(--fonte-titulo);font-weight:700}
+
+@media (min-width:768px){
+  .container{padding:0 32px}
+  .topo{height:68px}
+  .logo span{font-size:14px}
+  .cabecalho{padding:56px 0 60px}
+  .conteudo{padding:48px 0 88px}
+  .conteudo h2{font-size:22px}
+  .rodape .container{flex-direction:row;justify-content:space-between;text-align:left}
+}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="container">
+    <a class="logo" href="index.html" aria-label="Voltar para a página inicial">
+      <span class="logo-l1">Aceleradora de Vendas</span>
+      <span class="logo-l2 grad-texto">para Oficinas</span>
+    </a>
+    <a class="voltar" href="index.html">← Voltar ao site</a>
+  </div>
+</header>
+
+<main>
+  <div class="cabecalho">
+    <div class="container">
+      <h1>Política de <span class="grad-texto">Privacidade</span></h1>
+      <!-- TROCAR: atualize a data sempre que mudar esta política -->
+      <p>Última atualização: 11 de novembro de 2026</p>
+    </div>
+  </div>
+
+  <div class="conteudo">
+    <div class="container">
+
+      <div class="resumo">
+        <p><strong>Em resumo:</strong> usamos os dados que você informa no formulário apenas para entrar em contato, preparar o seu Raio X da Oficina e, se fizer sentido para os dois lados, apresentar uma proposta. Não vendemos os seus dados. Você pode pedir para ver, corrigir ou apagar os seus dados a qualquer momento.</p>
+      </div>
+
+      <section>
+        <h2><b>1.</b>Quem somos</h2>
+        <p>Este site pertence à <strong>Aceleradora de Vendas para Oficinas</strong>, inscrita no CNPJ 62.497.660/0001-87, responsável (controladora) pelos dados pessoais coletados aqui, nos termos da Lei Geral de Proteção de Dados (Lei nº 13.709/2018 – LGPD).</p>
+      </section>
+
+      <section>
+        <h2><b>2.</b>Quais dados coletamos</h2>
+        <p><strong>Dados que você informa no formulário do Raio X:</strong></p>
+        <ul>
+          <li>nome;</li>
+          <li>telefone (WhatsApp);</li>
+          <li>e-mail, se você quiser informar;</li>
+          <li>nome e endereço da oficina;</li>
+          <li>sua função na oficina, faturamento mensal atual e meta de faturamento (em faixas de valores).</li>
+        </ul>
+        <p><strong>Dados coletados automaticamente quando você navega:</strong></p>
+        <ul>
+          <li>a página de origem e os parâmetros da campanha que trouxe você até aqui (por exemplo, o anúncio clicado);</li>
+          <li>data e hora do envio do formulário;</li>
+          <li>informações técnicas do navegador e cookies de medição (veja a seção 6).</li>
+        </ul>
+        <p>No agendamento do horário, o calendário também pede nome, telefone e e-mail para confirmar a reunião.</p>
+      </section>
+
+      <section>
+        <h2><b>3.</b>Para que usamos os seus dados</h2>
+        <ul>
+          <li>entrar em contato com você, inclusive pelo WhatsApp, para confirmar e lembrar o seu Raio X;</li>
+          <li>analisar a sua oficina e a sua região antes da conversa;</li>
+          <li>avaliar se conseguimos ajudar a sua oficina e, se fizer sentido para ambos, apresentar uma proposta comercial;</li>
+          <li>medir o desempenho dos nossos anúncios e melhorar quem vê os nossos anúncios;</li>
+          <li>cumprir obrigações legais e nos defender em eventuais processos.</li>
+        </ul>
+        <p>Tratamos esses dados com base no seu pedido de contato e nos procedimentos preliminares a um possível contrato (art. 7º, V, da LGPD), no nosso legítimo interesse em medir e melhorar a divulgação (art. 7º, IX) e, quando exigido, no seu consentimento (art. 7º, I).</p>
+      </section>
+
+      <section>
+        <h2><b>4.</b>Com quem compartilhamos</h2>
+        <p>Não vendemos nem alugamos os seus dados. Eles são compartilhados apenas com as ferramentas que usamos para operar este serviço:</p>
+        <ul>
+          <li><strong>GoHighLevel</strong> (sistema de atendimento e calendário): guarda o seu contato, o agendamento e o histórico de conversas;</li>
+          <li><strong>Google</strong> (Planilhas Google e Google Tag Manager): guarda uma cópia das respostas e gerencia as ferramentas de medição do site;</li>
+          <li><strong>Meta</strong> (Facebook e Instagram): recebe informações sobre visitas e envios do formulário para medir os anúncios. Telefone e e-mail, quando enviados à Meta, vão criptografados (em formato que não permite ler o dado original);</li>
+          <li>empresa de hospedagem do site;</li>
+          <li>autoridades públicas, quando houver obrigação legal ou ordem judicial.</li>
+        </ul>
+        <p>Algumas dessas empresas guardam dados em servidores fora do Brasil. Nesses casos, a transferência segue as regras da LGPD, e essas empresas adotam medidas de segurança próprias.</p>
+      </section>
+
+      <section>
+        <h2><b>5.</b>Por quanto tempo guardamos</h2>
+        <!-- TROCAR: confirme o prazo de guarda com o seu advogado ou contador -->
+        <p>Guardamos os seus dados enquanto houver conversa ou relação comercial com você e por até 24 meses depois do último contato, a menos que a lei exija um prazo maior ou que você peça a exclusão antes disso.</p>
+      </section>
+
+      <section>
+        <h2><b>6.</b>Cookies e medição</h2>
+        <p>Cookies são pequenos arquivos salvos no seu navegador. Usamos cookies e tecnologias parecidas do Google Tag Manager e do Pixel da Meta para saber quantas pessoas visitam o site, quantas preenchem o formulário e de qual anúncio elas vieram. Isso nos ajuda a mostrar os anúncios para quem tem mais chance de se interessar.</p>
+        <p>Você pode apagar ou bloquear cookies nas configurações do seu navegador. O site continua funcionando, mas a medição dos anúncios fica menos precisa. Você também pode ajustar as suas preferências de anúncios nas configurações do Facebook e do Instagram.</p>
+      </section>
+
+      <section>
+        <h2><b>7.</b>Como protegemos</h2>
+        <p>O site usa conexão segura (HTTPS). O acesso aos dados é restrito às pessoas da nossa equipe que precisam deles para atender você, e as ferramentas que usamos exigem login individual. Nenhum dado pessoal é enviado pelo endereço (URL) das páginas.</p>
+      </section>
+
+      <section>
+        <h2><b>8.</b>Seus direitos</h2>
+        <p>Pela LGPD, você pode, a qualquer momento:</p>
+        <ul>
+          <li>confirmar se tratamos dados seus e pedir uma cópia deles;</li>
+          <li>corrigir dados incompletos ou errados;</li>
+          <li>pedir a exclusão dos seus dados ou parar de receber nossos contatos;</li>
+          <li>saber com quem compartilhamos os seus dados;</li>
+          <li>retirar o seu consentimento, quando ele for a base do tratamento;</li>
+          <li>reclamar à Autoridade Nacional de Proteção de Dados (ANPD).</li>
+        </ul>
+        <p>Para parar de receber mensagens no WhatsApp, basta responder pedindo para sair.</p>
+      </section>
+
+      <section>
+        <h2><b>9.</b>Fale com a gente</h2>
+        <!-- TROCAR: e-mail de contato para pedidos sobre dados pessoais -->
+        <p>Para exercer os seus direitos ou tirar dúvidas sobre esta política, escreva para <a href="mailto:contato@bluum.com.br">contato@bluum.com.br</a>. Respondemos em até 15 dias.</p>
+      </section>
+
+      <section>
+        <h2><b>10.</b>Mudanças nesta política</h2>
+        <p>Podemos atualizar esta política quando mudarmos a forma de tratar os dados. A data da última atualização fica sempre no topo desta página.</p>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="rodape">
+  <div class="container">
+    <span><strong>Aceleradora de Vendas para Oficinas</strong></span>
+    <span>CNPJ 62.497.660/0001-87</span>
+  </div>
+</footer>
+
+</body>
+</html>
