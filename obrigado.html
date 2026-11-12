@@ -238,7 +238,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- CALENDÁRIO DO GHL (código de incorporação).
            Para trocar de calendário: GHL > Calendários > (calendário) > Compartilhar > Código de incorporação,
            e substitua o <iframe> e o <script> abaixo. -->
-      <iframe src="https://api.jaguarsystems.online/widget/booking/cRGpYWX8Y9MTLmX4TEfi" allow="payment" style="width: 100%;border:none;overflow: hidden;" scrolling="no" id="cRGpYWX8Y9MTLmX4TEfi_1794447356742" title="Escolha o horário do seu Raio X"></iframe>
+      <iframe data-src="https://api.jaguarsystems.online/widget/booking/cRGpYWX8Y9MTLmX4TEfi" allow="payment" style="width: 100%;border:none;overflow: hidden;" scrolling="no" id="cRGpYWX8Y9MTLmX4TEfi_1794447356742" title="Escolha o horário do seu Raio X"></iframe>
+      <script>
+        // Carrega o calendário já com nome, sobrenome, e-mail e telefone preenchidos
+        // (vêm do formulário da landing page, guardados só nesta aba do navegador).
+        // Os dados vão direto para o calendário do GHL; o endereço desta página
+        // continua limpo, então GTM, Pixel e Clarity não recebem dados pessoais.
+        (function () {
+          var quadro = document.getElementById('cRGpYWX8Y9MTLmX4TEfi_1794447356742');
+          var url = quadro.getAttribute('data-src');
+          try {
+            var d = JSON.parse(sessionStorage.getItem('lead_agenda') || 'null');
+            if (d) {
+              var partes = [];
+              ['first_name', 'last_name', 'email', 'phone'].forEach(function (k) {
+                if (d[k]) { partes.push(k + '=' + encodeURIComponent(d[k])); }
+              });
+              if (partes.length) { url += '?' + partes.join('&'); }
+            }
+          } catch (e) {}
+          quadro.src = url;
+        })();
+      </script>
+      <noscript><iframe src="https://api.jaguarsystems.online/widget/booking/cRGpYWX8Y9MTLmX4TEfi" style="width:100%;border:none" title="Escolha o horário do seu Raio X"></iframe></noscript>
       <script src="https://api.jaguarsystems.online/js/form_embed.js" type="text/javascript"></script>
 
       <!-- Placeholder visual (some automaticamente quando houver um iframe acima) -->

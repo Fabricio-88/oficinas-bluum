@@ -1403,6 +1403,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // Fica só no sessionStorage: nenhum dado pessoal vai pela URL.
     try { sessionStorage.setItem('lead_primeiro_nome', primeiroNome); } catch (e) {}
 
+    // Dados para já preencher o calendário do GHL na página de obrigado.
+    // Ficam só no sessionStorage desta aba (somem ao fechar) e NÃO vão para o
+    // endereço da página: lá eles são passados direto ao calendário do GHL.
+    try {
+      sessionStorage.setItem('lead_agenda', JSON.stringify({
+        first_name: primeiroNome,
+        last_name: nome.split(' ').slice(1).join(' '),
+        email: dados.email,
+        phone: dados.whatsapp_internacional
+      }));
+    } catch (e) {}
+
     // Se o campo invisível foi preenchido, é um robô: não grava nada.
     var ehRobo = !!form.elements.site.value;
 
