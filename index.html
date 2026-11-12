@@ -1424,6 +1424,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       nome: nome,
       email: form.elements.email.value.trim(),
       primeiro_nome: primeiroNome,
+      sobrenome: nome.split(' ').slice(1).join(' '),
       whatsapp: mascaraTelefone(telefone),
       whatsapp_internacional: '+55' + telefone, // formato +55DDDNÚMERO: é o que o GHL usa para casar o contato com a conversa do WhatsApp
       data_hora: agora.toISOString(),
